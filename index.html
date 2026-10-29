@@ -7,10 +7,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<!-- Monetag Ad Script -->
+<!-- Monetag Ad Script (Main SDK) -->
 <script src="https://libtl.com/sdk.js" data-zone="12146639" data-sdk="show_12146639" defer></script>
 
 <style>
+  /* CSS আগের মতোই আছে, তবে এডমিন প্যানেলের জন্য নতুন কিছু স্টাইল যুক্ত করা হয়েছে */
   :root { --primary: #10b981; --primary-dark: #059669; --primary-light: #ecfdf5; --bg: #f8fafc; --card: #ffffff; --text: #0f172a; --text-muted: #64748b; --border: #e2e8f0; --radius: 20px; --shadow: 0 4px 15px rgba(0, 0, 0, 0.03); --nav-height: 70px; --safe-bottom: env(safe-area-inset-bottom, 0px); --font: 'Hind Siliguri', sans-serif; }
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   body { font-family: var(--font); background: var(--bg); color: var(--text); padding-bottom: calc(var(--nav-height) + var(--safe-bottom) + 16px); min-height: 100dvh; }
@@ -86,6 +87,8 @@
   .nav-item.active { color: var(--primary); }
   .nav-item.active .nav-icon { transform: translateY(-2px); transition: 0.2s; }
   .nav-badge { position: absolute; top: 2px; right: 50%; transform: translateX(14px); background: #ef4444; color: #fff; font-size: 9px; font-weight: 700; min-width: 16px; height: 16px; border-radius: 8px; display: flex; align-items: center; justify-content: center; padding: 0 4px; border: 2px solid var(--card);}
+  
+  /* Admin Panel Styles */
   #adminPanel { background: #f1f5f9; min-height: 100vh; display: none; position: fixed; inset: 0; z-index: 999; overflow-y: auto; padding-bottom: 20px;}
   .admin-header { background: #0f172a; color: #fff; padding: 16px; display: flex; justify-content: space-between; align-items: center; }
   .admin-nav { display: flex; background: #fff; border-bottom: 1px solid var(--border); overflow-x: auto; }
@@ -96,6 +99,7 @@
   .input-field { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid var(--border); font-family: var(--font); margin-bottom: 10px; outline: none;}
   select.input-field { appearance: auto; background-color: #fff; }
   .admin-btn { background: var(--primary); color: #fff; border: none; padding: 12px; border-radius: 10px; font-weight: 700; width: 100%; cursor: pointer; }
+  
   .toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px); background: #0f172a; color: #fff; padding: 10px 20px; border-radius: 10px; font-size: 13px; z-index: 9999; transition: transform 0.3s ease; pointer-events: none; }
   .toast.show { transform: translateX(-50%) translateY(0); }
   #loadingScreen { position: fixed; inset: 0; background: var(--bg); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; }
@@ -277,7 +281,7 @@
         <div class="task-info">
           <div class="task-title">দৈনিক বোনাস <span class="task-tag">দৈনিক</span></div>
           <div class="task-desc">Claim once every day</div>
-          <div class="task-reward">🪙 ৳10.00</div>
+          <div class="task-reward" id="dailyBonusRewardDisplay">🪙 ৳10.00</div>
         </div>
         <div style="text-align:right; margin-right:8px;">
           <div style="font-size:10px; color:var(--text-muted);">Available now</div>
@@ -285,7 +289,7 @@
         <button class="btn-watch" onclick="claimDailyBonus()">Claim</button>
       </div>
 
-      <!-- YouTube Task -->
+      <!-- YouTube Task (Placeholder) -->
       <div class="task-card" style="opacity:0.7;">
         <div class="task-icon" style="background:#fef2f2;color:#ef4444;">▶️</div>
         <div class="task-info">
@@ -351,7 +355,7 @@
       </div>
     </div>
     <div style="background:#f0fdf4; border:1px solid #bbf7d0; padding:12px; border-radius:12px; font-size:12px; color:#166534; margin-bottom:16px; font-weight:600;">
-      👥 সর্বনিম্ন রেফারেল প্রয়োজন: 20 | আপনার: <span id="withdrawRefCount">0</span>
+      👥 সর্বনিম্ন রেফারেল প্রয়োজন: <span id="minReferralDisplay">20</span> | আপনার: <span id="withdrawRefCount">0</span>
     </div>
     <input class="input-field" id="wAccount" type="tel" placeholder="অ্যাকাউন্ট নম্বর (01XXXXXXXXX)">
     <input class="input-field" id="wAmount" type="number" placeholder="পরিমাণ (সর্বনিম্ন ৳1000)">
@@ -397,7 +401,7 @@
   </nav>
 </div>
 
-<!-- ================= ADMIN PANEL ================= -->
+<!-- ================= ADMIN PANEL (FULL CONTROL) ================= -->
 <div id="adminPanel">
   <div class="admin-header">
     <div style="font-weight:800;">⚡ EarnX Admin</div>
@@ -407,8 +411,11 @@
     <div class="admin-tab active" onclick="switchAdminTab('users', this)">Users</div>
     <div class="admin-tab" onclick="switchAdminTab('ads', this)">Ads</div>
     <div class="admin-tab" onclick="switchAdminTab('withdraws', this)">Withdrawals</div>
+    <div class="admin-tab" onclick="switchAdminTab('settings', this)">Settings</div>
   </div>
   <div class="admin-content">
+    
+    <!-- TAB: USERS -->
     <div id="tab-users" class="admin-tab-content">
       <div style="background:#fff; padding:16px; border-radius:12px; box-shadow:var(--shadow);">
         <h4 style="margin-bottom:10px;">User Management</h4>
@@ -416,12 +423,29 @@
       </div>
     </div>
 
+    <!-- TAB: ADS -->
     <div id="tab-ads" class="admin-tab-content" style="display:none;">
       <div style="background:#fff; padding:16px; border-radius:12px; box-shadow:var(--shadow); margin-bottom:16px;">
-        <h4 style="margin-bottom:10px;">Add New Task (Custom Link)</h4>
-        <input type="text" class="input-field" id="adTitle" placeholder="Task Title (e.g., Join Telegram Channel)">
+        <h4 style="margin-bottom:10px;">Add New Ad Task</h4>
+        
+        <label style="font-size:12px; font-weight:600; margin-bottom:4px; display:block;">Ad Type</label>
+        <select class="input-field" id="adType" onchange="toggleAdFields()">
+          <option value="link">Custom Link Ad</option>
+          <option value="monetag">Monetag Ad (Video)</option>
+          <option value="telegram">Telegram Join Task</option>
+        </select>
+
+        <input type="text" class="input-field" id="adTitle" placeholder="Task Title (e.g., Watch Video)">
         <input type="number" class="input-field" id="adReward" placeholder="Reward (৳)" value="20">
-        <input type="url" class="input-field" id="adLinkInput" placeholder="Enter Link URL (https://...)">
+        
+        <div id="linkField">
+          <input type="url" class="input-field" id="adLinkInput" placeholder="Enter Link URL (https://...)">
+        </div>
+
+        <div id="monetagField" style="display:none;">
+          <input type="text" class="input-field" id="adMonetagFunc" placeholder="Monetag Function (e.g., show_12146639)">
+        </div>
+
         <button class="admin-btn" onclick="addNewAd()">Add Task</button>
       </div>
       <div style="background:#fff; padding:16px; border-radius:12px; box-shadow:var(--shadow);">
@@ -430,12 +454,35 @@
       </div>
     </div>
 
+    <!-- TAB: WITHDRAWS -->
     <div id="tab-withdraws" class="admin-tab-content" style="display:none;">
       <div style="background:#fff; padding:16px; border-radius:12px; box-shadow:var(--shadow);">
         <h4 style="margin-bottom:10px;">Pending Withdrawals</h4>
         <div id="adminWithdrawList">Loading...</div>
       </div>
     </div>
+
+    <!-- TAB: SETTINGS (NEW) -->
+    <div id="tab-settings" class="admin-tab-content" style="display:none;">
+      <div style="background:#fff; padding:16px; border-radius:12px; box-shadow:var(--shadow);">
+        <h4 style="margin-bottom:10px;">App Settings</h4>
+        
+        <label style="font-size:12px; font-weight:600; margin-bottom:4px; display:block;">Minimum Withdrawal (৳)</label>
+        <input type="number" class="input-field" id="setMinWithdraw" value="1000">
+
+        <label style="font-size:12px; font-weight:600; margin-bottom:4px; display:block;">Minimum Referral Required</label>
+        <input type="number" class="input-field" id="setMinReferral" value="20">
+
+        <label style="font-size:12px; font-weight:600; margin-bottom:4px; display:block;">Daily Bonus Amount (৳)</label>
+        <input type="number" class="input-field" id="setDailyBonus" value="10">
+
+        <label style="font-size:12px; font-weight:600; margin-bottom:4px; display:block;">Default Ad Reward (৳)</label>
+        <input type="number" class="input-field" id="setAdReward" value="20">
+
+        <button class="admin-btn" onclick="saveSettings()">Save Settings</button>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -449,10 +496,11 @@
   const ADMIN_TELEGRAM_ID = "7609414654"; 
   let tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
   if (!tgUser) {
-      tgUser = { id: "12345678", first_name: "Test User" }; // আপনার আইডি ছাড়া অন্য কেউ এডমিন হবে না
+      tgUser = { id: "12345678", first_name: "Test User" };
   }
 
   let currentUser = null;
+  let appSettings = { min_withdrawal: 1000, min_referral: 20, daily_bonus: 10, ad_reward: 20 };
   let selectedWithdrawMethod = "bKash";
   let verifyTimerId = null;
   let currentLinkReward = 0;
@@ -486,6 +534,17 @@
     el.style.borderColor = 'var(--primary)';
     el.style.background = 'var(--primary-light)';
     selectedWithdrawMethod = method === 'bkash' ? 'bKash' : 'Nagad';
+  }
+
+  // Load App Settings
+  async function loadSettings() {
+      const { data } = await supabaseClient.from('settings').select('*').eq('id', 1).single();
+      if(data) {
+          appSettings = data;
+          document.getElementById('minReferralDisplay').innerText = appSettings.min_referral;
+          document.getElementById('dailyBonusRewardDisplay').innerText = `🪙 ৳${appSettings.daily_bonus}`;
+          document.getElementById('wAmount').placeholder = `পরিমাণ (সর্বনিম্ন ৳${appSettings.min_withdrawal})`;
+      }
   }
 
   function updateAdUI() {
@@ -522,13 +581,15 @@
           watchBtn.classList.remove('btn-disabled');
           watchBtn.style.background = 'var(--primary)';
           watchBtn.style.color = '#fff';
-          watchBtn.onclick = () => watchAd('monetag', 20);
+          watchBtn.onclick = () => watchAd('monetag', 20); // Default Monetag
         }
     }
   }
 
   async function initUser() {
     try {
+      await loadSettings(); // লোড সেটিংস প্রথমে
+
       if (String(tgUser.id) === ADMIN_TELEGRAM_ID) {
         document.getElementById('adminMenuBtn').style.display = 'block';
       }
@@ -578,38 +639,61 @@
     const container = document.getElementById('customAdsContainer');
     
     if(ads && ads.length > 0) {
-        container.innerHTML = ads.map(ad => `
+        container.innerHTML = ads.map(ad => {
+            let icon = "🔗";
+            let btnText = "Visit";
+            let btnClass = "btn-blue";
+            let onClick = `watchCustomAd(${ad.reward}, '${ad.link}')`;
+            
+            if(ad.ad_type === 'monetag') {
+                icon = "▶️";
+                btnText = "Watch";
+                btnClass = "btn-watch";
+                onClick = `watchMonetag('${ad.monetag_func}', ${ad.reward})`;
+            } else if(ad.ad_type === 'telegram') {
+                icon = "✈️";
+                btnText = "Join";
+                btnClass = "btn-blue";
+                onClick = `window.open('${ad.link}', '_blank')`;
+            }
+
+            return `
             <div class="task-card">
-                <div class="task-icon" style="background:#eff6ff;color:#3b82f6;">🔗</div>
+                <div class="task-icon" style="background:#eff6ff;color:#3b82f6;">${icon}</div>
                 <div class="task-info">
-                <div class="task-title">${ad.title} <span class="task-tag">Link</span></div>
-                <div class="task-desc">Visit link and claim reward</div>
+                <div class="task-title">${ad.title} <span class="task-tag">${ad.ad_type}</span></div>
+                <div class="task-desc">${ad.ad_type === 'monetag' ? 'Watch video to earn' : 'Complete task to earn'}</div>
                 <div class="task-reward">🪙 ৳${ad.reward} available</div>
                 </div>
-                <button class="btn-blue" onclick="watchCustomAd(${ad.reward}, '${ad.link}')">🔗 Visit</button>
+                <button class="${btnClass}" onclick="${onClick}">${btnText}</button>
             </div>
-        `).join('');
+            `;
+        }).join('');
     }
   }
 
-  async function watchAd(type, reward, link = null) {
-    const today = new Date().toDateString();
-    let currentAdCount = currentUser.today_ads || 0;
-    if(currentUser.last_ad_date !== today) currentAdCount = 0;
-    if(currentAdCount >= 20) return showToast('আজকের এড দেখার লিমিট শেষ!');
-    
-    showToast('Loading Ad... Please wait...');
-    if (typeof show_12146639 === 'function') {
-      show_12146639().then(async () => {
-        await rewardUser(reward, currentAdCount, today);
-      }).catch((error) => {
-        showToast('❌ Ad not completed.');
-      });
-    } else {
-      showToast('Ad network loading failed.');
-    }
+  // Monetag Multiple Ads Logic
+  async function watchMonetag(funcName, reward) {
+      const today = new Date().toDateString();
+      let currentAdCount = currentUser.today_ads || 0;
+      if(currentUser.last_ad_date !== today) currentAdCount = 0;
+      if(currentAdCount >= 20) return showToast('আজকের এড দেখার লিমিট শেষ!');
+      
+      showToast('Loading Ad... Please wait...');
+      
+      // Check if the function exists in window (from SDK)
+      if (typeof window[funcName] === 'function') {
+          window[funcName]().then(async () => {
+              await rewardUser(reward, currentAdCount, today);
+          }).catch((error) => {
+              showToast('❌ Ad not completed.');
+          });
+      } else {
+          showToast('Ad network loading failed.');
+      }
   }
 
+  // Custom Link Ad Logic
   async function watchCustomAd(reward, link) {
     if(!link) return showToast("লিংক পাওয়া যায়নি!");
     currentLinkReward = reward;
@@ -653,6 +737,25 @@
       await rewardUser(currentLinkReward, currentAdCount, today);
   }
 
+  // Default watchAd (video)
+  async function watchAd(type, reward, link = null) {
+    const today = new Date().toDateString();
+    let currentAdCount = currentUser.today_ads || 0;
+    if(currentUser.last_ad_date !== today) currentAdCount = 0;
+    if(currentAdCount >= 20) return showToast('আজকের এড দেখার লিমিট শেষ!');
+    
+    showToast('Loading Ad... Please wait...');
+    if (typeof show_12146639 === 'function') {
+      show_12146639().then(async () => {
+        await rewardUser(reward, currentAdCount, today);
+      }).catch((error) => {
+        showToast('❌ Ad not completed.');
+      });
+    } else {
+      showToast('Ad network loading failed.');
+    }
+  }
+
   async function rewardUser(reward, currentAdCount, today) {
     try {
         const newBal = Number(currentUser.balance) + Number(reward);
@@ -666,10 +769,7 @@
             last_ad_date: today
         }).eq('telegram_id', currentUser.telegram_id);
         
-        if(error) {
-            console.error("Supabase Update Error:", error);
-            throw error;
-        }
+        if(error) throw error;
         
         currentUser.balance = newBal; 
         currentUser.total_earned = newEarned;
@@ -680,6 +780,7 @@
         updateAdUI();
         showToast(`✅ Earned ৳${reward}!`);
     } catch (err) {
+        console.error("Supabase Update Error:", err);
         showToast('❌ Error updating balance!');
     }
   }
@@ -689,7 +790,7 @@
     const lastClaim = localStorage.getItem('lastBonusClaim_' + currentUser.telegram_id);
     if(lastClaim === today) return showToast('আপনি আজ ইতিমধ্যে বোনাস নিয়েছেন!');
 
-    const bonusAmount = 10;
+    const bonusAmount = appSettings.daily_bonus; // সেটিংস থেকে আসবে
     try {
       const newBal = Number(currentUser.balance) + bonusAmount;
       const newEarned = Number(currentUser.total_earned) + bonusAmount;
@@ -760,10 +861,10 @@
     const btn = document.getElementById('withdrawBtn');
     if(!currentUser) return;
     
-    if(currentUser.referral_count < 20) {
-      btn.style.background = '#cbd5e1'; btn.innerText = `রেফারেল ${20 - currentUser.referral_count} আরও প্রয়োজন`;
-    } else if(amt < 1000) {
-      btn.style.background = '#cbd5e1'; btn.innerText = 'সর্বনিম্ন ৳1000 উত্তোলন করুন';
+    if(currentUser.referral_count < appSettings.min_referral) {
+      btn.style.background = '#cbd5e1'; btn.innerText = `রেফারেল ${appSettings.min_referral - currentUser.referral_count} আরও প্রয়োজন`;
+    } else if(amt < appSettings.min_withdrawal) {
+      btn.style.background = '#cbd5e1'; btn.innerText = `সর্বনিম্ন ৳${appSettings.min_withdrawal} উত্তোলন করুন`;
     } else if(!acc) {
       btn.style.background = '#cbd5e1'; btn.innerText = 'অ্যাকাউন্ট নম্বর দিন';
     } else if(amt > currentUser.balance) {
@@ -779,7 +880,7 @@
   async function submitWithdraw() {
     const acc = document.getElementById('wAccount').value.trim();
     const amt = parseFloat(document.getElementById('wAmount').value);
-    if(currentUser.referral_count < 20 || amt < 1000 || !acc || amt > currentUser.balance) return;
+    if(currentUser.referral_count < appSettings.min_referral || amt < appSettings.min_withdrawal || !acc || amt > currentUser.balance) return;
 
     try {
       await supabaseClient.from('withdrawals').insert([{ telegram_id: currentUser.telegram_id, amount: amt, method: selectedWithdrawMethod, account_number: acc }]);
@@ -796,12 +897,15 @@
     }
   }
 
+  // ==========================================
   // ADMIN PANEL
+  // ==========================================
   function openAdminPanel() {
     if(String(tgUser.id) !== ADMIN_TELEGRAM_ID) return showToast('❌ Access Denied!');
     document.getElementById('userApp').style.display = 'none';
     document.getElementById('adminPanel').style.display = 'block';
     loadAdminData();
+    loadAdminSettings();
   }
 
   function closeAdminPanel() {
@@ -814,6 +918,37 @@
     document.getElementById('tab-' + tabId).style.display = 'block';
     document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
     el.classList.add('active');
+  }
+
+  // এড টাইপ চেঞ্জ করলে ইনপুট ফিল্ড দেখানো/লুকানো
+  function toggleAdFields() {
+      const type = document.getElementById('adType').value;
+      document.getElementById('linkField').style.display = (type === 'link' || type === 'telegram') ? 'block' : 'none';
+      document.getElementById('monetagField').style.display = (type === 'monetag') ? 'block' : 'none';
+  }
+
+  async function loadAdminSettings() {
+      const { data } = await supabaseClient.from('settings').select('*').eq('id', 1).single();
+      if(data) {
+          document.getElementById('setMinWithdraw').value = data.min_withdrawal;
+          document.getElementById('setMinReferral').value = data.min_referral;
+          document.getElementById('setDailyBonus').value = data.daily_bonus;
+          document.getElementById('setAdReward').value = data.ad_reward;
+      }
+  }
+
+  async function saveSettings() {
+      const min_withdrawal = parseFloat(document.getElementById('setMinWithdraw').value);
+      const min_referral = parseInt(document.getElementById('setMinReferral').value);
+      const daily_bonus = parseFloat(document.getElementById('setDailyBonus').value);
+      const ad_reward = parseFloat(document.getElementById('setAdReward').value);
+
+      try {
+          await supabaseClient.from('settings').update({ min_withdrawal, min_referral, daily_bonus, ad_reward }).eq('id', 1);
+          showToast('✅ Settings Saved!');
+          await loadSettings(); // রিলোড
+          updateWithdrawBtn();
+      } catch(e) { showToast('❌ Error saving settings'); }
   }
 
   async function loadAdminData() {
@@ -832,7 +967,7 @@
       const { data: ads } = await supabaseClient.from('ads').select('*');
       document.getElementById('adminAdsList').innerHTML = ads?.map(a => `
         <div class="table-row">
-            <div><b>${a.title}</b> (৳${a.reward})</div>
+            <div><b>${a.title}</b> (৳${a.reward})<br><span style="font-size:10px;">${a.ad_type}</span></div>
             <span style="color:var(--primary);">Active</span>
         </div>
       `).join('') || 'No ads added yet';
@@ -870,20 +1005,28 @@
   }
 
   async function addNewAd() {
+    const type = document.getElementById('adType').value;
     const title = document.getElementById('adTitle').value;
     const reward = parseFloat(document.getElementById('adReward').value);
     const link = document.getElementById('adLinkInput').value;
-    if(!title || !reward || !link) return showToast('সব ঘর পূরণ করুন');
+    const monetagFunc = document.getElementById('adMonetagFunc').value;
+    
+    if(!title || !reward) return showToast('Title & Reward required');
+    if(type === 'link' || type === 'telegram') {
+        if(!link) return showToast('Link is required');
+    } else if (type === 'monetag') {
+        if(!monetagFunc) return showToast('Monetag Function name is required');
+    }
     
     try {
-      await supabaseClient.from('ads').insert([{ title, reward, link }]);
-      showToast('✅ এড যোগ হয়েছে!'); 
+      await supabaseClient.from('ads').insert([{ title, reward, link, ad_type: type, monetag_func: monetagFunc }]);
+      showToast('✅ Task added successfully!'); 
       document.getElementById('adTitle').value=''; 
-      document.getElementById('adReward').value='20';
       document.getElementById('adLinkInput').value='';
+      document.getElementById('adMonetagFunc').value='';
       loadAdminData();
     } catch (err) {
-      showToast('Failed to add ad!');
+      showToast('Failed to add task!');
     }
   }
 
