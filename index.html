@@ -11,30 +11,11 @@
 <script src="https://libtl.com/sdk.js" data-zone="12146639" data-sdk="show_12146639" defer></script>
 
 <style>
-  :root {
-    --primary: #10b981;
-    --primary-dark: #059669;
-    --primary-light: #ecfdf5;
-    --bg: #f8fafc;
-    --card: #ffffff;
-    --text: #0f172a;
-    --text-muted: #64748b;
-    --border: #e2e8f0;
-    --radius: 20px;
-    --shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-    --nav-height: 70px;
-    --safe-bottom: env(safe-area-inset-bottom, 0px);
-    --font: 'Hind Siliguri', sans-serif;
-  }
-
+  :root { --primary: #10b981; --primary-dark: #059669; --primary-light: #ecfdf5; --bg: #f8fafc; --card: #ffffff; --text: #0f172a; --text-muted: #64748b; --border: #e2e8f0; --radius: 20px; --shadow: 0 4px 15px rgba(0, 0, 0, 0.03); --nav-height: 70px; --safe-bottom: env(safe-area-inset-bottom, 0px); --font: 'Hind Siliguri', sans-serif; }
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   body { font-family: var(--font); background: var(--bg); color: var(--text); padding-bottom: calc(var(--nav-height) + var(--safe-bottom) + 16px); min-height: 100dvh; }
-
-  /* Top Bar */
   .top-bar { display: flex; align-items: center; justify-content: space-between; padding: 16px; background: var(--card); position: sticky; top: 0; z-index: 10; }
   .brand { font-weight: 800; font-size: 20px; color: var(--text); display: flex; align-items: center; gap: 8px; }
-  
-  /* Greeting Area */
   .greeting-area { display: flex; justify-content: space-between; align-items: center; padding: 0 16px 16px; background: var(--card); }
   .greeting-text { font-size: 18px; font-weight: 700; }
   .greeting-sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
@@ -42,76 +23,41 @@
   .badge { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; display: flex; align-items: center; gap: 4px; }
   .badge-green { background: var(--primary); color: #fff; }
   .badge-outline { background: #fff; border: 1px solid var(--border); color: var(--text); }
-  
-  /* Pages */
   .page { display: none; padding: 16px; animation: fadeIn 0.3s ease; }
   .page.active { display: block; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-  /* Green Wallet Card */
   .wallet-card { background: linear-gradient(135deg, #10b981, #047857); border-radius: 24px; padding: 20px; color: #fff; position: relative; overflow: hidden; box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.4); }
   .wallet-label { font-size: 13px; opacity: 0.9; display: flex; align-items: center; gap: 4px; }
   .wallet-balance { font-size: 40px; font-weight: 800; letter-spacing: -1px; margin: 4px 0; }
   .wallet-sub { font-size: 13px; font-weight: 600; color: #fde047; }
   .wallet-btn { background: #fff; color: var(--primary-dark); border: none; padding: 8px 20px; border-radius: 20px; font-weight: 700; font-size: 13px; margin-top: 16px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
-  /* 3D Wallet Effect (CSS only) */
   .wallet-graphic { position: absolute; right: 10px; bottom: 10px; width: 100px; height: 100px; background: url('https://cdn-icons-png.flaticon.com/512/2489/2489756.png') no-repeat center center; background-size: contain; opacity: 0.9; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.2)); transform: rotate(-10deg); }
-
-  /* Stats Grid (4 cols) */
   .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 16px; }
   .stat-box { background: var(--card); border-radius: 16px; padding: 12px 4px; text-align: center; box-shadow: var(--shadow); }
   .stat-icon-wrap { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 18px; }
   .stat-val { font-size: 15px; font-weight: 700; }
   .stat-lbl { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
-
-  /* Section Headers */
   .sec-header { display: flex; justify-content: space-between; align-items: center; margin: 20px 0 12px; }
   .sec-title { font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
   .sec-link { font-size: 12px; color: var(--primary); font-weight: 600; cursor: pointer; }
-
-  /* Earnings Summary (3 cards) */
   .earn-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
   .earn-card { background: var(--card); border-radius: 16px; padding: 12px; box-shadow: var(--shadow); position: relative; overflow: hidden;}
   .earn-card-title { font-size: 11px; color: var(--text-muted); font-weight: 600; }
   .earn-card-val { font-size: 18px; font-weight: 800; margin: 4px 0; }
   .earn-chart { width: 100%; height: 20px; }
-
-  /* Quick Actions (4 grid) */
   .quick-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
   .quick-item { background: var(--card); border-radius: 16px; padding: 16px 8px; text-align: center; box-shadow: var(--shadow); cursor: pointer; }
   .quick-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 22px; }
   .quick-title { font-size: 12px; font-weight: 700; color: var(--text); }
   .quick-sub { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
-
-  /* Promo Banner */
-  .promo-banner { background: linear-gradient(to right, #ecfdf5, #d1fae5); border-radius: 16px; padding: 16px; display: flex; align-items: center; gap: 16px; margin: 16px 0; position: relative; overflow: hidden;}
-  .promo-text { flex: 1; }
-  .promo-title { font-size: 14px; font-weight: 800; color: var(--primary-dark); }
-  .promo-desc { font-size: 12px; color: var(--text-muted); margin: 4px 0 10px; }
-  .promo-btn { background: var(--primary); color: #fff; border: none; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 12px; cursor: pointer; }
-  .promo-img { width: 60px; height: 60px; font-size: 50px; line-height: 1; }
-
-  /* Activity List */
-  .activity-list { background: var(--card); border-radius: 16px; padding: 8px 16px; box-shadow: var(--shadow); }
-  .activity-item { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
-  .activity-item:last-child { border: none; }
-  .act-icon { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
-  .act-info { flex: 1; }
-  .act-title { font-size: 14px; font-weight: 700; }
-  .act-time { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
-  .act-amt { font-size: 15px; font-weight: 800; color: var(--primary); }
-
-  /* Earn Page Specifics */
   .earn-header-green { background: linear-gradient(135deg, #10b981, #047857); border-radius: 20px; padding: 20px; color: #fff; margin-bottom: 16px; }
   .earn-header-stats { display: flex; justify-content: space-between; margin-top: 16px; text-align: center; }
   .earn-header-stat-val { font-size: 18px; font-weight: 800; }
   .earn-header-stat-lbl { font-size: 11px; opacity: 0.9; }
-
   .tabs-container { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 16px; scrollbar-width: none; }
   .tabs-container::-webkit-scrollbar { display: none; }
   .tab-btn { background: var(--card); border: 1px solid var(--border); padding: 10px 16px; border-radius: 12px; font-size: 13px; font-weight: 700; white-space: nowrap; display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--text-muted); cursor: pointer; }
   .tab-btn.active { border-color: var(--primary); color: var(--primary-dark); background: var(--primary-light); }
-
   .task-card { background: var(--card); border-radius: 16px; padding: 16px; display: flex; align-items: center; gap: 12px; margin-bottom: 12px; box-shadow: var(--shadow); }
   .task-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
   .task-info { flex: 1; }
@@ -119,17 +65,12 @@
   .task-tag { font-size: 9px; font-weight: 700; background: #fef3c7; color: #d97706; padding: 2px 6px; border-radius: 4px; }
   .task-desc { font-size: 11px; color: var(--text-muted); margin: 2px 0; }
   .task-reward { font-size: 13px; font-weight: 700; color: #ea580c; display: flex; align-items: center; gap: 2px; }
-  
-  /* Progress Circle */
   .progress-circle { width: 44px; height: 44px; border-radius: 50%; background: conic-gradient(var(--primary) 0%, #e2e8f0 0); display: flex; align-items: center; justify-content: center; position: relative; }
   .progress-circle::before { content: ''; position: absolute; width: 36px; height: 36px; background: var(--card); border-radius: 50%; }
   .progress-text { position: relative; font-size: 10px; font-weight: 700; }
-
   .btn-watch { background: var(--primary); color: #fff; border: none; padding: 10px 18px; border-radius: 10px; font-weight: 700; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 4px; }
   .btn-disabled { background: #e2e8f0; color: #94a3b8; cursor: not-allowed; }
   .btn-blue { background: #3b82f6; color: #fff; border: none; padding: 10px 18px; border-radius: 10px; font-weight: 700; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 4px; }
-
-  /* Leaderboard List */
   .lb-card { background: var(--card); border-radius: 16px; padding: 12px 16px; display: flex; align-items: center; gap: 12px; margin-bottom: 8px; box-shadow: var(--shadow); }
   .lb-rank { font-size: 14px; font-weight: 800; color: var(--text-muted); width: 24px; }
   .lb-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; background: #e2e8f0; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #fff;}
@@ -139,16 +80,12 @@
   .lb-amount { text-align: right; }
   .lb-refs { font-size: 15px; font-weight: 800; color: var(--primary); }
   .lb-amt-lbl { font-size: 10px; color: var(--text-muted); }
-
-  /* Bottom Nav */
   .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; height: calc(var(--nav-height) + var(--safe-bottom)); padding-bottom: var(--safe-bottom); background: var(--card); display: flex; align-items: center; justify-content: space-around; border-top: 1px solid var(--border); z-index: 100; border-radius: 20px 20px 0 0; box-shadow: 0 -4px 15px rgba(0,0,0,0.03); }
   .nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 10px; font-weight: 600; color: var(--text-muted); cursor: pointer; flex: 1; padding: 8px 0; border: none; background: transparent; position: relative;}
   .nav-icon { font-size: 22px; line-height: 1; }
   .nav-item.active { color: var(--primary); }
   .nav-item.active .nav-icon { transform: translateY(-2px); transition: 0.2s; }
   .nav-badge { position: absolute; top: 2px; right: 50%; transform: translateX(14px); background: #ef4444; color: #fff; font-size: 9px; font-weight: 700; min-width: 16px; height: 16px; border-radius: 8px; display: flex; align-items: center; justify-content: center; padding: 0 4px; border: 2px solid var(--card);}
-
-  /* Admin Panel */
   #adminPanel { background: #f1f5f9; min-height: 100vh; display: none; position: fixed; inset: 0; z-index: 999; overflow-y: auto; padding-bottom: 20px;}
   .admin-header { background: #0f172a; color: #fff; padding: 16px; display: flex; justify-content: space-between; align-items: center; }
   .admin-nav { display: flex; background: #fff; border-bottom: 1px solid var(--border); overflow-x: auto; }
@@ -157,49 +94,40 @@
   .admin-content { padding: 16px; }
   .table-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; gap: 10px;}
   .input-field { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid var(--border); font-family: var(--font); margin-bottom: 10px; outline: none;}
-  .admin-btn { background: var(--primary); color: #fff; border: none; padding: 12px; border-radius: 10px; font-weight: 700; width: 100%; cursor: pointer;}
-
-  /* Toast */
+  select.input-field { appearance: auto; background-color: #fff; }
+  .admin-btn { background: var(--primary); color: #fff; border: none; padding: 12px; border-radius: 10px; font-weight: 700; width: 100%; cursor: pointer; }
   .toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px); background: #0f172a; color: #fff; padding: 10px 20px; border-radius: 10px; font-size: 13px; z-index: 9999; transition: transform 0.3s ease; pointer-events: none; }
   .toast.show { transform: translateX(-50%) translateY(0); }
-
-  /* Loading Screen */
   #loadingScreen { position: fixed; inset: 0; background: var(--bg); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; }
   .spinner { width: 40px; height: 40px; border: 4px solid #e2e8f0; border-top: 4px solid var(--primary); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 16px; }
   @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-  /* Language Modal */
-  .lang-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1001; display: none; align-items: center; justify-content: center; }
-  .lang-overlay.show { display: flex; }
-  .lang-card { background: #fff; width: 80%; max-width: 300px; border-radius: 16px; padding: 20px; }
-  .lang-option { padding: 12px; text-align: center; border-bottom: 1px solid var(--border); cursor: pointer; font-weight: 600;}
-  .lang-option:last-child { border: none; }
+  
+  /* Verification Modal */
+  .verify-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 1000; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
+  .verify-modal.show { display: flex; }
+  .verify-card { background: #fff; border-radius: 16px; padding: 20px; text-align: center; max-width: 300px; width: 100%; }
+  .verify-timer { font-size: 36px; font-weight: 800; color: var(--primary); margin: 15px 0; }
 </style>
 </head>
 <body>
 
-<!-- Loading Screen -->
 <div id="loadingScreen">
   <div class="spinner"></div>
   <div style="color: var(--text-muted); font-size: 14px;">Loading...</div>
 </div>
 
-<!-- Language Modal -->
-<div class="lang-overlay" id="langModal">
-  <div class="lang-card">
-    <h3 style="text-align:center; margin-bottom:15px;" data-i18n="select_lang">Select Language</h3>
-    <div class="lang-option" onclick="setLanguage('bn')">🇧🇩 বাংলা (Bangla)</div>
-    <div class="lang-option" onclick="setLanguage('en')">🇬🇧 English</div>
-    <div class="lang-option" onclick="setLanguage('zh')">🇨🇳 中文 (Chinese)</div>
-    <div class="lang-option" onclick="setLanguage('ja')">🇯🇵 日本語 (Japanese)</div>
-    <div class="lang-option" style="color:red; border-top:1px solid #eee;" onclick="document.getElementById('langModal').classList.remove('show')">Close</div>
+<!-- Link Verification Modal -->
+<div class="verify-modal" id="verifyModal">
+  <div class="verify-card">
+    <h3 style="font-size:18px; margin-bottom:5px;">লিংক ভিজিট করুন</h3>
+    <p style="font-size:12px; color:var(--text-muted);">কাজটি সম্পন্ন করে এই পেজে ফিরে আসুন।</p>
+    <div class="verify-timer" id="verifyTimer">5</div>
+    <button class="btn-watch" id="claimLinkBtn" style="width:100%; justify-content:center; background:#cbd5e1; color:#fff; pointer-events:none;" onclick="claimLinkReward()">Claim Reward</button>
   </div>
 </div>
 
 <!-- ================= USER APP ================= -->
 <div id="userApp" style="display:none;">
-  
-  <!-- Top Bar -->
   <div class="top-bar">
     <div class="brand">🪙 EarnX</div>
     <div style="display:flex;gap:12px;align-items:center;">
@@ -210,8 +138,6 @@
 
   <!-- ================= HOME PAGE ================= -->
   <div id="page-home" class="page active">
-    
-    <!-- Greeting -->
     <div class="greeting-area">
       <div>
         <div class="greeting-text">হ্যালো, <span id="greetName">User</span> 👋</div>
@@ -224,43 +150,40 @@
       <div style="width:50px;height:50px;border-radius:50%;background:#e0e7ff;color:#4f46e5;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;" id="topAvatar">U</div>
     </div>
 
-    <!-- Wallet Card -->
     <div class="wallet-card">
-      <div class="wallet-label" data-i18n="total_bal">মোট ব্যালেন্স 👁</div>
+      <div class="wallet-label">মোট ব্যালেন্স 👁</div>
       <div class="wallet-balance" id="homeBalance">৳0.00</div>
-      <div class="wallet-sub"><span data-i18n="avail_bal">উপলব্ধ ব্যালেন্স</span> <span id="homeBalanceSub">৳0.00</span></div>
-      <button class="wallet-btn" onclick="goTo('withdraw')">💳 <span data-i18n="withdraw">উত্তোলন</span></button>
+      <div class="wallet-sub">উপলব্ধ ব্যালেন্স <span id="homeBalanceSub">৳0.00</span></div>
+      <button class="wallet-btn" onclick="goTo('withdraw')">💳 উত্তোলন</button>
       <div class="wallet-graphic"></div>
     </div>
 
-    <!-- Stats Grid -->
     <div class="stats-grid">
       <div class="stat-box">
         <div class="stat-icon-wrap" style="background:#ecfdf5;color:#10b981;">👥</div>
         <div class="stat-val" id="homeRefs">0</div>
-        <div class="stat-lbl" data-i18n="refs">মোট রেফারেল</div>
+        <div class="stat-lbl">মোট রেফারেল</div>
       </div>
       <div class="stat-box">
         <div class="stat-icon-wrap" style="background:#eff6ff;color:#3b82f6;">☑️</div>
         <div class="stat-val">0</div>
-        <div class="stat-lbl" data-i18n="tasks">সম্পন্ন টাস্ক</div>
+        <div class="stat-lbl">সম্পন্ন টাস্ক</div>
       </div>
       <div class="stat-box">
         <div class="stat-icon-wrap" style="background:#fdf4ff;color:#d946ef;">🎁</div>
         <div class="stat-val">2</div>
-        <div class="stat-lbl" data-i18n="bonus">নেওয়া বোনাস</div>
+        <div class="stat-lbl">নেওয়া বোনাস</div>
       </div>
       <div class="stat-box">
         <div class="stat-icon-wrap" style="background:#fffbeb;color:#f59e0b;">💰</div>
         <div class="stat-val" id="homeEarned">৳0.00</div>
-        <div class="stat-lbl" data-i18n="total_earn">মোট আয়</div>
+        <div class="stat-lbl">মোট আয়</div>
       </div>
     </div>
 
-    <!-- Earnings Summary -->
     <div class="sec-header">
-      <div class="sec-title">📈 <span data-i18n="earn_summary">আয়ের সারসংক্ষেপ</span></div>
-      <div class="sec-link" data-i18n="see_all">সব দেখুন ›</div>
+      <div class="sec-title">📈 আয়ের সারসংক্ষেপ</div>
+      <div class="sec-link">সব দেখুন ›</div>
     </div>
     <div class="earn-summary">
       <div class="earn-card">
@@ -280,80 +203,28 @@
       </div>
     </div>
 
-    <!-- Quick Actions -->
     <div class="sec-header">
-      <div class="sec-title">⚡ <span data-i18n="quick_actions">দ্রুত ব্যবহার</span></div>
+      <div class="sec-title">⚡ দ্রুত ব্যবহার</div>
     </div>
     <div class="quick-grid">
       <div class="quick-item" onclick="goTo('refer')">
         <div class="quick-icon" style="background:#ecfdf5;color:#10b981;">🔗</div>
-        <div class="quick-title" data-i18n="refer">রেফার করে আয়</div>
-        <div class="quick-sub">বন্ধু আমন্ত্রণ করুন</div>
+        <div class="quick-title">রেফার</div>
       </div>
       <div class="quick-item" onclick="goTo('withdraw')">
         <div class="quick-icon" style="background:#fffbeb;color:#f59e0b;">💳</div>
-        <div class="quick-title" data-i18n="withdraw">উত্তোলন</div>
-        <div class="quick-sub">ক্যাশ আউট</div>
+        <div class="quick-title">উত্তোলন</div>
       </div>
       <div class="quick-item" onclick="claimDailyBonus()">
         <div class="quick-icon" style="background:#fdf4ff;color:#d946ef;">🎁</div>
-        <div class="quick-title" data-i18n="daily_bonus">দৈনিক বোনাস</div>
-        <div class="quick-sub">এখনই নিন</div>
+        <div class="quick-title">বোনাস</div>
       </div>
       <div class="quick-item" onclick="goTo('earn')">
         <div class="quick-icon" style="background:#eff6ff;color:#3b82f6;">📋</div>
-        <div class="quick-title" data-i18n="tasks">টাস্ক</div>
-        <div class="quick-sub">সম্পন্ন করে আয়</div>
-      </div>
-      <!-- Language Button -->
-      <div class="quick-item" onclick="document.getElementById('langModal').classList.add('show')">
-        <div class="quick-icon" style="background:#e0e7ff;color:#4f46e5;">🌐</div>
-        <div class="quick-title" data-i18n="lang">ভাষা</div>
-        <div class="quick-sub">Change</div>
-      </div>
-      <!-- Admin Panel Button -->
-      <div class="quick-item" id="adminMenuBtn" style="display: none;" onclick="openAdminPanel()">
-        <div class="quick-icon" style="background:#fef3c7;color:#d97706;">🔐</div>
-        <div class="quick-title">Admin</div>
-        <div class="quick-sub">Panel</div>
+        <div class="quick-title">টাস্ক</div>
       </div>
     </div>
-
-    <!-- Promo Banner -->
-    <div class="promo-banner">
-      <div class="promo-text">
-        <div class="promo-title">এগিয়ে চলুন, আপনি দারুণ করছেন!</div>
-        <div class="promo-desc">আরও টাস্ক সম্পন্ন করে বেশি পুরস্কার আয় করুন।</div>
-        <button class="promo-btn" onclick="goTo('earn')">টাস্ক দেখুন ›</button>
-      </div>
-      <div class="promo-img">🛡️</div>
-    </div>
-
-    <!-- Recent Activity -->
-    <div class="sec-header">
-      <div class="sec-title">🕒 <span data-i18n="recent_activity">সাম্প্রতিক কার্যক্রম</span></div>
-      <div class="sec-link" data-i18n="see_all">সব দেখুন ›</div>
-    </div>
-    <div class="activity-list">
-      <div class="activity-item">
-        <div class="act-icon" style="background:#fdf4ff;color:#d946ef;">🎁</div>
-        <div class="act-info">
-          <div class="act-title">দৈনিক বোনাস</div>
-          <div class="act-time">আপনি আয় করেছেন ৳10.00</div>
-        </div>
-        <div class="act-amt">+৳10.00</div>
-      </div>
-      <div class="activity-item">
-        <div class="act-icon" style="background:#ecfdf5;color:#10b981;">▶️</div>
-        <div class="act-info">
-          <div class="act-title">বিজ্ঞাপন দেখুন</div>
-          <div class="act-time">আপনি আয় করেছেন ৳20.00</div>
-        </div>
-        <div class="act-amt">+৳20.00</div>
-      </div>
-    </div>
-
-  </div> <!-- End Home Page -->
+  </div>
 
   <!-- ================= EARN PAGE ================= -->
   <div id="page-earn" class="page">
@@ -362,11 +233,11 @@
       <div style="font-size:32px; font-weight:800;" id="earnBalance">৳0.00</div>
       <div class="earn-header-stats">
         <div>
-          <div class="earn-header-stat-val">0</div>
+          <div class="earn-header-stat-val" id="todayAdsWatched">0</div>
           <div class="earn-header-stat-lbl">আজ দেখা বিজ্ঞাপন</div>
         </div>
         <div>
-          <div class="earn-header-stat-val">20</div>
+          <div class="earn-header-stat-val" id="remainingAds">20</div>
           <div class="earn-header-stat-lbl">বাকি বিজ্ঞাপন</div>
         </div>
         <div>
@@ -376,18 +247,17 @@
       </div>
     </div>
 
-    <div class="sec-title" style="margin-bottom:12px;" data-i18n="earn_ways">| আয়ের উপায়</div>
+    <div class="sec-title" style="margin-bottom:12px;">| আয়ের উপায়</div>
     
     <div class="tabs-container">
-      <div class="tab-btn active" onclick="filterTasks('all', this)"><span style="font-size:16px;">📱</span> সব</div>
-      <div class="tab-btn" onclick="filterTasks('video', this)"><span style="font-size:16px;color:#10b981;">▶️</span> ভিডিও বিজ্ঞাপন</div>
-      <div class="tab-btn" onclick="filterTasks('youtube', this)"><span style="font-size:16px;color:#ef4444;">▶️</span> YouTube Task</div>
-      <div class="tab-btn" onclick="filterTasks('telegram', this)"><span style="font-size:16px;color:#3b82f6;">✈️</span> Telegram Task</div>
+      <div class="tab-btn active"><span style="font-size:16px;">📱</span> সব</div>
+      <div class="tab-btn"><span style="font-size:16px;color:#10b981;">▶️</span> ভিডিও বিজ্ঞাপন</div>
+      <div class="tab-btn"><span style="font-size:16px;color:#ef4444;">▶️</span> YouTube Task</div>
+      <div class="tab-btn"><span style="font-size:16px;color:#3b82f6;">✈️</span> Telegram Task</div>
     </div>
 
-    <!-- Task List Container -->
     <div id="tasksContainer">
-      <!-- Task 1: Video Ad -->
+      <!-- Default Video Ad (Monetag) -->
       <div class="task-card">
         <div class="task-icon" style="background:#ecfdf5;color:#10b981;">▶️</div>
         <div class="task-info">
@@ -395,13 +265,13 @@
           <div class="task-desc">বিজ্ঞাপন দেখে শেষে আয় করুন</div>
           <div class="task-reward">🪙 ৳20.00 প্রতি বিজ্ঞাপন</div>
         </div>
-        <div class="progress-circle" style="background: conic-gradient(var(--primary) 0%, #e2e8f0 0);">
-          <div class="progress-text">0/20</div>
+        <div class="progress-circle" id="adProgressCircle" style="background: conic-gradient(var(--primary) 0%, #e2e8f0 0);">
+          <div class="progress-text" id="adProgressText">0/20</div>
         </div>
-        <button class="btn-watch" onclick="watchAd(20)">▶️ দেখুন</button>
+        <button class="btn-watch" id="watchAdBtn" onclick="watchAd('monetag', 20)">▶️ দেখুন</button>
       </div>
 
-      <!-- Task 2: Daily Bonus -->
+      <!-- Daily Bonus -->
       <div class="task-card">
         <div class="task-icon" style="background:#ecfdf5;color:#10b981;">📅</div>
         <div class="task-info">
@@ -415,12 +285,12 @@
         <button class="btn-watch" onclick="claimDailyBonus()">Claim</button>
       </div>
 
-      <!-- Task 3: YouTube -->
+      <!-- YouTube Task -->
       <div class="task-card" style="opacity:0.7;">
         <div class="task-icon" style="background:#fef2f2;color:#ef4444;">▶️</div>
         <div class="task-info">
           <div class="task-title">YouTube Task</div>
-          <div class="task-desc">Subscribe, watch & complete tasks</div>
+          <div class="task-desc">Subscribe & watch videos</div>
           <div class="task-reward" style="color:var(--text-muted);">🪙 ৳0.00 available</div>
         </div>
         <div class="progress-circle" style="background: conic-gradient(#e2e8f0 0%, #e2e8f0 0);">
@@ -429,61 +299,46 @@
         <button class="btn-watch btn-disabled">No Task</button>
       </div>
 
-      <!-- Task 4: Telegram -->
+      <!-- Telegram Task -->
       <div class="task-card">
         <div class="task-icon" style="background:#eff6ff;color:#3b82f6;">✈️</div>
         <div class="task-info">
           <div class="task-title">Telegram Task</div>
-          <div class="task-desc">যোগ দিন Telegram channels & groups</div>
+          <div class="task-desc">Join our Telegram channel</div>
           <div class="task-reward" style="color:#ea580c;">🪙 ৳80.00 available</div>
         </div>
         <div class="progress-circle" style="background: conic-gradient(#3b82f6 0%, #e2e8f0 0);">
           <div class="progress-text">0/3</div>
         </div>
-        <button class="btn-blue">📋 See Task</button>
+        <button class="btn-blue" onclick="window.open('https://t.me/EarnX24h_Bot', '_blank')">📋 Join</button>
       </div>
+
+      <!-- Custom Ads (Admin Panel theke asbe) -->
+      <div id="customAdsContainer"></div>
     </div>
   </div>
 
-  <!-- ================= REFER PAGE ================= -->
+  <!-- ================= REFER / WITHDRAW / LEADERBOARD / PROFILE ================= -->
   <div id="page-refer" class="page">
     <div class="wallet-card" style="text-align:center; padding: 30px 20px;">
       <div style="font-size:16px; font-weight:700;">বন্ধুকে আমন্ত্রণ জানান ও</div>
       <div style="font-size:32px; font-weight:800; margin-top:8px;">৳25.00 per friend</div>
-      <div style="background:rgba(255,255,255,0.2); display:inline-block; padding:6px 16px; border-radius:20px; font-size:12px; margin-top:12px;">🎁 আপনার বন্ধু পাবে ৳5.00 বোনাস</div>
     </div>
-
     <div class="card" style="margin-top:16px; padding:16px; border-radius:16px; background:var(--card); box-shadow:var(--shadow);">
       <div style="font-size:14px; font-weight:700; margin-bottom:12px;">🔗 আপনার রেফারেল লিংক</div>
       <div style="display:flex; gap:8px; background:var(--bg); padding:6px 6px 6px 14px; border-radius:12px; border:1px solid var(--border); align-items:center;">
         <input type="text" id="refLink" value="https://t.me/EarnX24h_Bot/app?startapp=ref" readonly style="flex:1; border:none; background:transparent; font-size:12px; color:var(--text-muted); outline:none;">
         <button class="btn-watch" onclick="copyRefLink()" style="padding:8px 16px;">📋 কপি</button>
       </div>
-      
-      <div style="text-align:center; font-size:12px; color:var(--text-muted); margin:16px 0;">— অথবা —</div>
-      
-      <div style="display:flex; justify-content:space-around;">
-        <div style="text-align:center; cursor:pointer;" onclick="shareVia('whatsapp')">
-          <div style="width:50px;height:50px;border-radius:50%;background:#25d366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 6px;">💬</div><span style="font-size:11px;">WhatsApp</span>
-        </div>
-        <div style="text-align:center; cursor:pointer;" onclick="shareVia('telegram')">
-          <div style="width:50px;height:50px;border-radius:50%;background:#0088cc;color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 6px;">✈️</div><span style="font-size:11px;">Telegram</span>
-        </div>
-        <div style="text-align:center; cursor:pointer;" onclick="shareVia('facebook')">
-          <div style="width:50px;height:50px;border-radius:50%;background:#1877f2;color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 6px;">f</div><span style="font-size:11px;">Facebook</span>
-        </div>
-      </div>
     </div>
   </div>
 
-  <!-- ================= WITHDRAW PAGE ================= -->
   <div id="page-withdraw" class="page">
     <div class="wallet-card" style="margin-bottom:20px;">
       <div class="wallet-label">উপলব্ধ ব্যালেন্স 👁</div>
       <div class="wallet-balance" id="withdrawBalance">৳0.00</div>
       <div class="wallet-graphic" style="opacity:0.3;"></div>
     </div>
-
     <div class="sec-title" style="margin-bottom:12px;">উত্তোলন পদ্ধতি</div>
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px;">
       <div class="method-card selected" onclick="selectMethod('bkash', this)" style="border:2px solid var(--primary); background:var(--primary-light); border-radius:12px; padding:16px; text-align:center; cursor:pointer;">
@@ -495,42 +350,43 @@
         <div style="font-size:14px; font-weight:700; margin-top:4px;">Nagad</div>
       </div>
     </div>
-
     <div style="background:#f0fdf4; border:1px solid #bbf7d0; padding:12px; border-radius:12px; font-size:12px; color:#166534; margin-bottom:16px; font-weight:600;">
       👥 সর্বনিম্ন রেফারেল প্রয়োজন: 20 | আপনার: <span id="withdrawRefCount">0</span>
     </div>
-
     <input class="input-field" id="wAccount" type="tel" placeholder="অ্যাকাউন্ট নম্বর (01XXXXXXXXX)">
     <input class="input-field" id="wAmount" type="number" placeholder="পরিমাণ (সর্বনিম্ন ৳1000)">
-    
     <button id="withdrawBtn" onclick="submitWithdraw()" style="width:100%; padding:14px; border:none; border-radius:12px; background:#cbd5e1; color:#fff; font-weight:700; font-size:15px; margin-top:8px;">রেফারেল 20 আরও প্রয়োজন</button>
   </div>
 
-  <!-- ================= LEADERBOARD PAGE ================= -->
   <div id="page-leaderboard" class="page">
     <div style="text-align:center; margin-bottom:20px;">
       <div style="font-size:20px; font-weight:800; color:var(--primary);">🏆 টপ রেফারার</div>
-      <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">৫০ জন ব্যবহারকারী</div>
     </div>
-    
-    <div id="leaderboardList">
-      <!-- Rendered via JS -->
-    </div>
+    <div id="leaderboardList"></div>
   </div>
 
-  <!-- ================= PROFILE PAGE ================= -->
   <div id="page-profile" class="page">
     <div style="background:var(--card); padding:20px; border-radius:16px; box-shadow:var(--shadow); display:flex; align-items:center; gap:16px;">
       <div style="width:64px;height:64px;border-radius:50%;background:#e0e7ff;color:#4f46e5;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;" id="profileInitial">U</div>
       <div>
         <div style="font-size:18px;font-weight:800;" id="profileName">User Name</div>
         <div style="font-size:12px;color:var(--text-muted);" id="profileId">ID: Loading...</div>
-        <div style="background:#dcfce7;color:var(--green);font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;margin-top:6px;display:inline-block;">⭐ এলিট সদস্য</div>
+        <div style="background:#dcfce7;color:var(--primary);font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;margin-top:6px;display:inline-block;">⭐ এলিট সদস্য</div>
+      </div>
+    </div>
+
+    <div id="adminMenuBtn" style="display: none; background:var(--card); padding:16px; border-radius:16px; box-shadow:var(--shadow); margin-top:16px; cursor:pointer;" onclick="openAdminPanel()">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="width:40px;height:40px;border-radius:12px;background:#fef3c7;color:#d97706;display:flex;align-items:center;justify-content:center;font-size:20px;">🔐</div>
+        <div style="flex:1;">
+          <div style="font-size:14px; font-weight:700; color:#d97706;">Admin Panel</div>
+          <div style="font-size:11px; color:var(--text-muted);">Restricted Area</div>
+        </div>
+        <div style="color:var(--text-muted);">›</div>
       </div>
     </div>
   </div>
 
-  <!-- BOTTOM NAVIGATION -->
   <nav class="bottom-nav">
     <button class="nav-item active" data-page="home" onclick="goTo('home')"><span class="nav-icon">🏠</span><span>হোম</span></button>
     <button class="nav-item" data-page="earn" onclick="goTo('earn')"><span class="nav-icon">💰</span><span>আয়</span></button>
@@ -548,30 +404,32 @@
     <button class="btn-watch" style="background:#334155; color:#fff;" onclick="closeAdminPanel()">Exit</button>
   </div>
   <div class="admin-nav">
-    <div class="admin-tab active" onclick="switchAdminTab('dashboard', this)">Dashboard</div>
+    <div class="admin-tab active" onclick="switchAdminTab('users', this)">Users</div>
     <div class="admin-tab" onclick="switchAdminTab('ads', this)">Ads</div>
     <div class="admin-tab" onclick="switchAdminTab('withdraws', this)">Withdrawals</div>
   </div>
   <div class="admin-content">
-    <div id="tab-dashboard" class="admin-tab-content">
+    <div id="tab-users" class="admin-tab-content">
       <div style="background:#fff; padding:16px; border-radius:12px; box-shadow:var(--shadow);">
-        <h4 style="margin-bottom:10px;">Overview</h4>
-        <div class="table-row"><span>Total Users</span> <b id="adminTotalUsers">0</b></div>
-        <div class="table-row"><span>Total Payouts</span> <b style="color:var(--primary);" id="adminTotalPayouts">৳0</b></div>
+        <h4 style="margin-bottom:10px;">User Management</h4>
+        <div id="adminUsersList">Loading...</div>
       </div>
     </div>
+
     <div id="tab-ads" class="admin-tab-content" style="display:none;">
       <div style="background:#fff; padding:16px; border-radius:12px; box-shadow:var(--shadow); margin-bottom:16px;">
-        <h4 style="margin-bottom:10px;">Add New Ad Task</h4>
-        <input type="text" class="input-field" id="adTitle" placeholder="Ad Title (e.g., Watch Video)">
+        <h4 style="margin-bottom:10px;">Add New Task (Custom Link)</h4>
+        <input type="text" class="input-field" id="adTitle" placeholder="Task Title (e.g., Join Telegram Channel)">
         <input type="number" class="input-field" id="adReward" placeholder="Reward (৳)" value="20">
-        <button class="admin-btn" onclick="addNewAd()">Add Ad</button>
+        <input type="url" class="input-field" id="adLinkInput" placeholder="Enter Link URL (https://...)">
+        <button class="admin-btn" onclick="addNewAd()">Add Task</button>
       </div>
       <div style="background:#fff; padding:16px; border-radius:12px; box-shadow:var(--shadow);">
-        <h4 style="margin-bottom:10px;">Active Ads</h4>
+        <h4 style="margin-bottom:10px;">Active Tasks</h4>
         <div id="adminAdsList">Loading...</div>
       </div>
     </div>
+
     <div id="tab-withdraws" class="admin-tab-content" style="display:none;">
       <div style="background:#fff; padding:16px; border-radius:12px; box-shadow:var(--shadow);">
         <h4 style="margin-bottom:10px;">Pending Withdrawals</h4>
@@ -584,48 +442,20 @@
 <div class="toast" id="toast"></div>
 
 <script>
-  // ==========================================
-  // TRANSLATIONS (i18n)
-  // ==========================================
-  const translations = {
-    bn: {
-      total_bal: "মোট ব্যালেন্স 👁", avail_bal: "উপলব্ধ ব্যালেন্স", refs: "মোট রেফারেল", tasks: "সম্পন্ন টাস্ক", bonus: "নেওয়া বোনাস", total_earn: "মোট আয়",
-      withdraw: "উত্তোলন", refer: "রেফার", daily_bonus: "বোনাস", leaderboard: "লিডারবোর্ড", lang: "ভাষা", select_lang: "ভাষা নির্বাচন করুন",
-      earn_summary: "আয়ের সারসংক্ষেপ", see_all: "সব দেখুন ›", quick_actions: "দ্রুত ব্যবহার", recent_activity: "সাম্প্রতিক কার্যক্রম", earn_ways: "| আয়ের উপায়"
-    },
-    en: {
-      total_bal: "Total Balance 👁", avail_bal: "Available Balance", refs: "Referrals", tasks: "Tasks Done", bonus: "Bonuses", total_earn: "Total Earned",
-      withdraw: "Withdraw", refer: "Refer", daily_bonus: "Bonus", leaderboard: "Leaderboard", lang: "Language", select_lang: "Select Language",
-      earn_summary: "Earnings Summary", see_all: "See All ›", quick_actions: "Quick Actions", recent_activity: "Recent Activity", earn_ways: "| Ways to Earn"
-    }
-    // Add ZH and JA here if needed, keeping it concise for the snippet
-  };
-
-  let currentLang = 'bn'; 
-
-  function setLanguage(lang) {
-    currentLang = lang;
-    document.getElementById('langModal').classList.remove('show');
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-      const key = el.getAttribute('data-i18n');
-      if(translations[lang] && translations[lang][key]) {
-        el.innerText = translations[lang][key];
-      }
-    });
-    updateWithdrawBtn(); 
-  }
-
-  // ==========================================
-  // SUPABASE & TELEGRAM SETUP
-  // ==========================================
   const SUPABASE_URL = 'https://gohloidaqvixrvsapsju.supabase.co';
   const SUPABASE_ANON_KEY = 'sb_publishable_Q2o5jFiAAa_IBGAEL_XuhQ_1KefZnfd';
   const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
   const ADMIN_TELEGRAM_ID = "7609414654"; 
-  let tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user || { id: "999999", first_name: "TestUser", username: "test" };
+  let tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
+  if (!tgUser) {
+      tgUser = { id: "12345678", first_name: "Test User" }; // আপনার আইডি ছাড়া অন্য কেউ এডমিন হবে না
+  }
+
   let currentUser = null;
   let selectedWithdrawMethod = "bKash";
+  let verifyTimerId = null;
+  let currentLinkReward = 0;
 
   function goTo(pageId) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -633,6 +463,7 @@
     document.querySelectorAll('.nav-item').forEach(n => n.classList.toggle('active', n.dataset.page === pageId));
     if(pageId === 'withdraw') updateWithdrawBtn();
     if(pageId === 'leaderboard') renderLeaderboard();
+    if(pageId === 'earn') loadCustomAds();
   }
 
   function showToast(msg) {
@@ -644,14 +475,7 @@
   function copyRefLink() {
     const link = document.getElementById('refLink');
     link.select(); document.execCommand('copy');
-    showToast('✅ Link Copied!');
-  }
-  
-  function shareVia(p) {
-    const url = encodeURIComponent(`https://t.me/EarnX24h_Bot/app?startapp=ref_${tgUser.id}`);
-    if(p==='telegram') window.open(`https://t.me/share/url?url=${url}`);
-    else if(p==='whatsapp') window.open(`https://wa.me/?text=${url}`);
-    else if(p==='facebook') window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`);
+    showToast('✅ লিংক কপি হয়েছে!');
   }
 
   function selectMethod(method, el) {
@@ -664,28 +488,66 @@
     selectedWithdrawMethod = method === 'bkash' ? 'bKash' : 'Nagad';
   }
 
+  function updateAdUI() {
+    if(!currentUser) return;
+    const today = new Date().toDateString();
+    let todayAdCount = currentUser.today_ads || 0;
+    
+    if(currentUser.last_ad_date !== today) {
+        todayAdCount = 0;
+    }
+
+    const remaining = 20 - todayAdCount;
+    const percentage = (todayAdCount / 20) * 100;
+    
+    document.getElementById('todayAdsWatched').innerText = todayAdCount;
+    document.getElementById('remainingAds').innerText = remaining;
+    
+    const progressCircle = document.getElementById('adProgressCircle');
+    const progressText = document.getElementById('adProgressText');
+    const watchBtn = document.getElementById('watchAdBtn');
+
+    if(progressCircle) {
+        progressCircle.style.background = `conic-gradient(var(--primary) ${percentage}%, #e2e8f0 ${percentage}%)`;
+        progressText.innerText = `${todayAdCount}/20`;
+        
+        if(remaining <= 0) {
+          watchBtn.innerText = 'লিমিট শেষ';
+          watchBtn.classList.add('btn-disabled');
+          watchBtn.style.background = '#e2e8f0';
+          watchBtn.style.color = '#94a3b8';
+          watchBtn.onclick = null;
+        } else {
+          watchBtn.innerText = '▶️ দেখুন';
+          watchBtn.classList.remove('btn-disabled');
+          watchBtn.style.background = 'var(--primary)';
+          watchBtn.style.color = '#fff';
+          watchBtn.onclick = () => watchAd('monetag', 20);
+        }
+    }
+  }
+
   async function initUser() {
     try {
-      let { data: user, error } = await supabaseClient.from('users').select('*').eq('telegram_id', tgUser.id).single();
-      
-      if (error && error.code !== 'PGRST116') throw new Error("DB Error: " + error.message);
+      if (String(tgUser.id) === ADMIN_TELEGRAM_ID) {
+        document.getElementById('adminMenuBtn').style.display = 'block';
+      }
 
+      let { data: user } = await supabaseClient.from('users').select('*').eq('telegram_id', tgUser.id).single();
+      
       if (!user) {
-        const { data: newUser, error: insertError } = await supabaseClient.from('users').insert([{ telegram_id: tgUser.id, first_name: tgUser.first_name }]).select().single();
-        if (insertError) throw new Error("Insert Error: " + insertError.message);
+        const { data: newUser, error } = await supabaseClient.from('users').insert([{ telegram_id: tgUser.id, first_name: tgUser.first_name, today_ads: 0 }]).select().single();
+        if(error) console.error("Insert Error: ", error);
         user = newUser;
       }
       
       currentUser = user;
       updateUserUI();
+      updateAdUI();
+      await loadCustomAds();
       
-      if (String(tgUser.id) === ADMIN_TELEGRAM_ID) {
-        document.getElementById('adminMenuBtn').style.display = 'flex';
-      }
-
     } catch (err) {
-      console.error(err);
-      showToast("DB Error: " + err.message);
+      console.error("Init Error: ", err);
     } finally {
       document.getElementById('loadingScreen').style.display = 'none';
       document.getElementById('userApp').style.display = 'block';
@@ -707,72 +569,169 @@
     document.getElementById('withdrawRefCount').innerText = currentUser.referral_count;
     
     document.getElementById('profileName').innerText = currentUser.first_name;
-    document.getElementById('profileId').innerText = `ID: ${currentUser.telegram_id}`;
+    document.getElementById('profileId').innerText = `TG ID: ${currentUser.telegram_id}`;
     document.getElementById('profileInitial').innerText = currentUser.first_name.charAt(0).toUpperCase();
   }
 
-  // Monetag & Reward Logic
-  async function watchAd(reward) {
-    showToast('Loading Ad... Please wait...');
+  async function loadCustomAds() {
+    const { data: ads } = await supabaseClient.from('ads').select('*').eq('is_active', true);
+    const container = document.getElementById('customAdsContainer');
     
+    if(ads && ads.length > 0) {
+        container.innerHTML = ads.map(ad => `
+            <div class="task-card">
+                <div class="task-icon" style="background:#eff6ff;color:#3b82f6;">🔗</div>
+                <div class="task-info">
+                <div class="task-title">${ad.title} <span class="task-tag">Link</span></div>
+                <div class="task-desc">Visit link and claim reward</div>
+                <div class="task-reward">🪙 ৳${ad.reward} available</div>
+                </div>
+                <button class="btn-blue" onclick="watchCustomAd(${ad.reward}, '${ad.link}')">🔗 Visit</button>
+            </div>
+        `).join('');
+    }
+  }
+
+  async function watchAd(type, reward, link = null) {
+    const today = new Date().toDateString();
+    let currentAdCount = currentUser.today_ads || 0;
+    if(currentUser.last_ad_date !== today) currentAdCount = 0;
+    if(currentAdCount >= 20) return showToast('আজকের এড দেখার লিমিট শেষ!');
+    
+    showToast('Loading Ad... Please wait...');
     if (typeof show_12146639 === 'function') {
       show_12146639().then(async () => {
-        // User clicked "Continue" on Monetag
-        try {
-          const newBal = Number(currentUser.balance) + Number(reward);
-          const newEarned = Number(currentUser.total_earned) + Number(reward);
-          
-          await supabaseClient.from('users').update({ balance: newBal, total_earned: newEarned }).eq('telegram_id', currentUser.telegram_id);
-          
-          currentUser.balance = newBal; 
-          currentUser.total_earned = newEarned;
-          updateUserUI();
-          showToast(`✅ Earned ৳${reward}!`);
-        } catch (err) {
-          showToast('❌ Error updating balance!');
-        }
+        await rewardUser(reward, currentAdCount, today);
       }).catch((error) => {
-        console.error('Monetag Error:', error);
-        showToast('❌ Ad not completed or skipped.');
+        showToast('❌ Ad not completed.');
       });
     } else {
       showToast('Ad network loading failed.');
     }
   }
 
+  async function watchCustomAd(reward, link) {
+    if(!link) return showToast("লিংক পাওয়া যায়নি!");
+    currentLinkReward = reward;
+    
+    if (window.Telegram && window.Telegram.WebApp) {
+        window.Telegram.WebApp.openLink(link);
+    } else {
+        window.open(link, '_blank');
+    }
+    
+    document.getElementById('verifyModal').classList.add('show');
+    let timeLeft = 5;
+    document.getElementById('verifyTimer').innerText = timeLeft;
+    
+    const claimBtn = document.getElementById('claimLinkBtn');
+    claimBtn.style.background = '#cbd5e1';
+    claimBtn.style.pointerEvents = 'none';
+    claimBtn.innerText = 'Wait...';
+
+    clearInterval(verifyTimerId);
+    verifyTimerId = setInterval(() => {
+        timeLeft--;
+        document.getElementById('verifyTimer').innerText = timeLeft;
+        
+        if(timeLeft <= 0) {
+            clearInterval(verifyTimerId);
+            document.getElementById('verifyTimer').innerText = "Done!";
+            claimBtn.style.background = 'var(--primary)';
+            claimBtn.style.pointerEvents = 'auto';
+            claimBtn.innerText = 'Claim Reward';
+        }
+    }, 1000);
+  }
+
+  async function claimLinkReward() {
+      const today = new Date().toDateString();
+      let currentAdCount = currentUser.today_ads || 0;
+      if(currentUser.last_ad_date !== today) currentAdCount = 0;
+      
+      document.getElementById('verifyModal').classList.remove('show');
+      await rewardUser(currentLinkReward, currentAdCount, today);
+  }
+
+  async function rewardUser(reward, currentAdCount, today) {
+    try {
+        const newBal = Number(currentUser.balance) + Number(reward);
+        const newEarned = Number(currentUser.total_earned) + Number(reward);
+        const newAdCount = currentAdCount + 1;
+        
+        const { error } = await supabaseClient.from('users').update({ 
+            balance: newBal, 
+            total_earned: newEarned,
+            today_ads: newAdCount,
+            last_ad_date: today
+        }).eq('telegram_id', currentUser.telegram_id);
+        
+        if(error) {
+            console.error("Supabase Update Error:", error);
+            throw error;
+        }
+        
+        currentUser.balance = newBal; 
+        currentUser.total_earned = newEarned;
+        currentUser.today_ads = newAdCount;
+        currentUser.last_ad_date = today;
+        
+        updateUserUI();
+        updateAdUI();
+        showToast(`✅ Earned ৳${reward}!`);
+    } catch (err) {
+        showToast('❌ Error updating balance!');
+    }
+  }
+
   async function claimDailyBonus() {
     const today = new Date().toDateString();
-    const lastClaim = localStorage.getItem('lastBonusClaim');
-    if(lastClaim === today) return showToast('You already claimed today!');
+    const lastClaim = localStorage.getItem('lastBonusClaim_' + currentUser.telegram_id);
+    if(lastClaim === today) return showToast('আপনি আজ ইতিমধ্যে বোনাস নিয়েছেন!');
 
     const bonusAmount = 10;
     try {
       const newBal = Number(currentUser.balance) + bonusAmount;
       const newEarned = Number(currentUser.total_earned) + bonusAmount;
-      await supabaseClient.from('users').update({ balance: newBal, total_earned: newEarned }).eq('telegram_id', currentUser.telegram_id);
       
+      const { error } = await supabaseClient.from('users').update({ balance: newBal, total_earned: newEarned }).eq('telegram_id', currentUser.telegram_id);
+      if(error) throw error;
+
       currentUser.balance = newBal; 
       currentUser.total_earned = newEarned;
-      localStorage.setItem('lastBonusClaim', today);
+      localStorage.setItem('lastBonusClaim_' + currentUser.telegram_id, today);
       updateUserUI();
       showToast(`🎁 Daily bonus ৳${bonusAmount} claimed!`);
     } catch (err) {
-      showToast('Error claiming bonus!');
+      console.error("Bonus Error: ", err);
+      showToast('❌ Error claiming bonus!');
     }
   }
 
-  // Leaderboard Render
   function renderLeaderboard() {
     const container = document.getElementById('leaderboardList');
     let html = '';
-    const dummyNames = ["Akash Ahmed", "Sagor Hossain", "Roni Mia", "Rahim Uddin", "Karim Sheikh", "Sumon Ali", "Tamim Iqbal", "Shakib Khan", "Mushfiqur R.", "Mahmudullah"];
+    const dummyNames = [
+      "Akash Ahmed", "Sagor Hossain", "Roni Mia", "Rahim Uddin", "Karim Sheikh", 
+      "Sumon Ali", "Tamim Iqbal", "Shakib Khan", "Mushfiqur R.", "Mahmudullah",
+      "Sabbir Rahman", "Mehedi Hasan", "Liton Das", "Taskin Ahmed", "Mustafizur",
+      "Rubel Hossain", "Imrul Kayes", "Soumya Sarkar", "Nurul Hasan", "Afif Hossain",
+      "Mosaddek Hossain", "Shoriful Islam", "Nasum Ahmed", "Mahedi Hasan", "Parvez Hossain",
+      "Shamim Hossain", "Yasir Ali", "Towhid Hridoy", "Rishad Hossain", "Tanzim Hasan",
+      "Nahid Rana", "Jaker Ali", "Anamul Haque", "Zakir Hasan", "Taijul Islam",
+      "Khaled Ahmed", "Ebadot Hossain", "Hasan Mahmud", "Mominul Haque", "Shadman Islam",
+      "Imran Khan", "Al Amin Hossain", "Abu Jayed", "Kamrul Islam", "Shafiul Islam",
+      "Syed Khaled", "Aminul Islam", "Farhad Reza", "Nazmul Hossain", "Dollar Mahmud"
+    ];
     
     for(let i=1; i<=50; i++) {
-      let name = dummyNames[i-1] || `User ${i}`;
+      let name = dummyNames[i-1];
       let refs = Math.floor(Math.random() * 500) + 10;
-      if(i===1) { name = 'Md Arafat'; refs = 1254; }
-      if(i===2) { name = 'Juwel Ahmed'; refs = 937; }
-      if(i===3) { name = 'DH TEXAS'; refs = 790; }
+      let earnings = refs * 25; 
+      
+      if(i===1) { name = 'Md Arafat'; refs = 1254; earnings = 31350; }
+      if(i===2) { name = 'Juwel Ahmed'; refs = 937; earnings = 23425; }
+      if(i===3) { name = 'DH TEXAS'; refs = 790; earnings = 19750; }
 
       let bg = i === 1 ? '#fbbf24' : i === 2 ? '#94a3b8' : i === 3 ? '#b45309' : '#e2e8f0';
       let color = i <= 3 ? '#fff' : '#64748b';
@@ -786,8 +745,8 @@
             <div class="lb-level">লেভেল 4 · ${refs} রেফারেল</div>
           </div>
           <div class="lb-amount">
-            <div class="lb-refs">${refs}</div>
-            <div class="lb-amt-lbl">মোট রেফারেল</div>
+            <div class="lb-refs">৳${earnings}</div>
+            <div class="lb-amt-lbl">মোট আয়</div>
           </div>
         </div>
       `;
@@ -795,7 +754,6 @@
     container.innerHTML = html;
   }
 
-  // Withdraw
   function updateWithdrawBtn() {
     const amt = parseFloat(document.getElementById('wAmount').value) || 0;
     const acc = document.getElementById('wAccount').value.trim();
@@ -838,9 +796,7 @@
     }
   }
 
-  // ==========================================
   // ADMIN PANEL
-  // ==========================================
   function openAdminPanel() {
     if(String(tgUser.id) !== ADMIN_TELEGRAM_ID) return showToast('❌ Access Denied!');
     document.getElementById('userApp').style.display = 'none';
@@ -862,15 +818,24 @@
 
   async function loadAdminData() {
     try {
-      const { count: userCount } = await supabaseClient.from('users').select('*', { count: 'exact', head: true });
-      document.getElementById('adminTotalUsers').innerText = userCount || 0;
-
-      const { data: approvedW } = await supabaseClient.from('withdrawals').select('amount').eq('status', 'approved');
-      const total = approvedW?.reduce((sum, w) => sum + Number(w.amount), 0) || 0;
-      document.getElementById('adminTotalPayouts').innerText = `৳${total}`;
+      const { data: users } = await supabaseClient.from('users').select('*').order('created_at', { ascending: false }).limit(50);
+      document.getElementById('adminUsersList').innerHTML = users?.map(u => `
+        <div class="table-row">
+          <div><b>${u.first_name}</b><br><span style="font-size:11px;">ID: ${u.telegram_id}</span></div>
+          <div style="text-align:right;">
+            <div style="font-weight:700;color:var(--primary);">৳${Number(u.balance).toFixed(2)}</div>
+            <button class="admin-btn" style="padding:4px 8px; width:auto; margin-top:4px; font-size:11px;" onclick="editUserBalance('${u.telegram_id}', ${u.balance})">Edit</button>
+          </div>
+        </div>
+      `).join('') || 'No users found';
 
       const { data: ads } = await supabaseClient.from('ads').select('*');
-      document.getElementById('adminAdsList').innerHTML = ads?.map(a => `<div class="table-row"><span>${a.title} (৳${a.reward})</span><span style="color:var(--primary);">Active</span></div>`).join('') || 'No ads added yet';
+      document.getElementById('adminAdsList').innerHTML = ads?.map(a => `
+        <div class="table-row">
+            <div><b>${a.title}</b> (৳${a.reward})</div>
+            <span style="color:var(--primary);">Active</span>
+        </div>
+      `).join('') || 'No ads added yet';
 
       const { data: w } = await supabaseClient.from('withdrawals').select('*').order('created_at', { ascending: false });
       document.getElementById('adminWithdrawList').innerHTML = w?.map(item => `
@@ -882,21 +847,40 @@
           </div>
         </div>
       `).join('') || 'No requests';
+      
     } catch (err) {
       console.error(err);
+    }
+  }
+
+  async function editUserBalance(telegramId, currentBalance) {
+    const newBalanceStr = prompt(`Enter new balance for User ID ${telegramId}:`, currentBalance);
+    if(newBalanceStr === null) return;
+    const newBalance = parseFloat(newBalanceStr);
+    if(isNaN(newBalance)) return showToast('সঠিক সংখ্যা দিন!');
+    
+    try {
+      const { error } = await supabaseClient.from('users').update({ balance: newBalance }).eq('telegram_id', telegramId);
+      if(error) throw error;
+      showToast('✅ ব্যালেন্স আপডেট হয়েছে!');
+      loadAdminData();
+    } catch (err) {
+      showToast('❌ আপডেট ফেইল হয়েছে!');
     }
   }
 
   async function addNewAd() {
     const title = document.getElementById('adTitle').value;
     const reward = parseFloat(document.getElementById('adReward').value);
-    if(!title || !reward) return showToast('Enter title and reward');
+    const link = document.getElementById('adLinkInput').value;
+    if(!title || !reward || !link) return showToast('সব ঘর পূরণ করুন');
     
     try {
-      await supabaseClient.from('ads').insert([{ title, reward }]);
-      showToast('✅ Ad added successfully!'); 
+      await supabaseClient.from('ads').insert([{ title, reward, link }]);
+      showToast('✅ এড যোগ হয়েছে!'); 
       document.getElementById('adTitle').value=''; 
       document.getElementById('adReward').value='20';
+      document.getElementById('adLinkInput').value='';
       loadAdminData();
     } catch (err) {
       showToast('Failed to add ad!');
@@ -913,18 +897,11 @@
     }
   }
 
-  function filterTasks(type, el) {
-    document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
-    el.classList.add('active');
-    showToast('Filtering: ' + type);
-  }
-
   window.onload = () => {
     if (window.Telegram?.WebApp) {
       window.Telegram.WebApp.ready();
       window.Telegram.WebApp.expand();
     }
-    setLanguage('bn');
     initUser();
   };
 </script>
