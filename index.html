@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -10,6 +10,7 @@
 <script src="https://libtl.com/sdk.js" data-zone="12146639" data-sdk="show_12146639" defer></script>
 
 <style>
+  /* CSS (আগের মতোই) */
   :root { --primary: #10b981; --primary-dark: #059669; --primary-light: #ecfdf5; --bg: #f8fafc; --card: #ffffff; --text: #0f172a; --text-muted: #64748b; --border: #e2e8f0; --radius: 20px; --shadow: 0 4px 15px rgba(0, 0, 0, 0.03); --nav-height: 70px; --safe-bottom: env(safe-area-inset-bottom, 0px); --font: 'Hind Siliguri', sans-serif; }
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   body { font-family: var(--font); background: var(--bg); color: var(--text); padding-bottom: calc(var(--nav-height) + var(--safe-bottom) + 16px); min-height: 100dvh; }
@@ -101,7 +102,7 @@
   .p-refs { font-size: 12px; font-weight: 800; color: var(--primary); margin-top: 4px; }
   .p-crown { position: absolute; top: -24px; font-size: 24px; }
 
-  /* Profile Page Styles */
+  /* Profile Page */
   .profile-header-new { display: flex; align-items: center; gap: 16px; padding: 16px; margin-bottom: 16px; }
   .avatar-large { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #60a5fa, #a855f7); display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 800; color: #fff; box-shadow: 0 8px 16px rgba(96, 165, 250, 0.3); }
   .user-info-new { flex: 1; }
@@ -109,13 +110,11 @@
   .verified-badge { color: #3b82f6; font-size: 16px; }
   .username-new { font-size: 13px; color: var(--text-muted); margin-top: 2px; margin-bottom: 8px; }
   .elite-badge { background: #10b981; color: #fff; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; display: inline-flex; align-items: center; gap: 4px; }
-  
   .level-card { background: var(--card); border-radius: 16px; padding: 16px; box-shadow: var(--shadow); margin-bottom: 16px; }
   .level-title-row { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; margin-bottom: 12px; }
   .progress-bar-bg { width: 100%; height: 8px; background: #e2e8f0; border-radius: 4px; overflow: hidden; margin-bottom: 8px; }
   .progress-bar-fill { height: 100%; background: #10b981; border-radius: 4px; width: 0%; }
   .level-desc { font-size: 11px; color: var(--text-muted); }
-
   .menu-card-profile { background: var(--card); border-radius: 16px; padding: 8px 16px; box-shadow: var(--shadow); margin-bottom: 16px; }
   .menu-item-profile { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--border); cursor: pointer; }
   .menu-item-profile:last-child { border-bottom: none; }
@@ -125,14 +124,12 @@
   .menu-sub-profile { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
   .menu-arrow-profile { color: #cbd5e1; font-size: 20px; }
   .lang-badge-profile { background: #dcfce7; color: var(--primary); font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; margin-right: 8px;}
-
   .promo-banner-profile { background: linear-gradient(to right, #ecfdf5, #d1fae5); border-radius: 16px; padding: 16px; display: flex; align-items: center; gap: 16px; margin: 16px 0; position: relative; overflow: hidden; }
   .promo-icon-profile { font-size: 50px; line-height: 1; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
   .promo-content-profile { flex: 1; }
   .promo-title-profile { font-size: 14px; font-weight: 800; color: var(--primary-dark); }
   .promo-text-profile { font-size: 11px; color: var(--text-muted); margin: 4px 0 10px; }
   .promo-btn-profile { background: var(--primary); color: #fff; border: none; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 12px; cursor: pointer; display: inline-block; }
-
   .moon-toggle { width: 36px; height: 36px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05); color: #f59e0b; font-size: 18px; cursor: pointer; position: absolute; right: 16px; top: 16px; }
 
   /* Bottom Nav */
@@ -143,7 +140,7 @@
   .nav-item.active .nav-icon { transform: translateY(-2px); transition: 0.2s; }
   .nav-badge { position: absolute; top: 2px; right: 50%; transform: translateX(14px); background: #ef4444; color: #fff; font-size: 9px; font-weight: 700; min-width: 16px; height: 16px; border-radius: 8px; display: flex; align-items: center; justify-content: center; padding: 0 4px; border: 2px solid var(--card);}
   
-  /* Admin Panel Styles */
+  /* Admin Panel & Chat */
   #adminPanel { background: #f1f5f9; min-height: 100vh; display: none; position: fixed; inset: 0; z-index: 999; overflow-y: auto; padding-bottom: 20px;}
   .admin-header { background: #0f172a; color: #fff; padding: 16px; display: flex; justify-content: space-between; align-items: center; }
   .admin-nav { display: flex; background: #fff; border-bottom: 1px solid var(--border); overflow-x: auto; }
@@ -154,8 +151,6 @@
   .input-field { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid var(--border); font-family: var(--font); margin-bottom: 10px; outline: none;}
   select.input-field { appearance: auto; background-color: #fff; }
   .admin-btn { background: var(--primary); color: #fff; border: none; padding: 12px; border-radius: 10px; font-weight: 700; width: 100%; cursor: pointer; }
-  
-  /* Chat Styles */
   .chat-container { display: flex; flex-direction: column; height: calc(100vh - 160px); background: var(--card); border-radius: 16px; box-shadow: var(--shadow); overflow: hidden; margin-bottom: 16px; }
   .chat-header { padding: 16px; background: var(--primary-light); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
   .chat-messages { flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
@@ -171,13 +166,10 @@
   .modal-overlay.show { display: flex; }
   .modal-card { background: #fff; border-radius: 20px; padding: 24px; text-align: center; max-width: 340px; width: 100%; animation: scaleIn 0.3s ease; }
   @keyframes scaleIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-  
   .lang-option { display: flex; align-items: center; justify-content: space-between; padding: 12px; border-bottom: 1px solid var(--border); cursor: pointer; font-weight: 600; font-size: 14px;}
   .lang-option:last-child { border: none; }
-
   .toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px); background: #0f172a; color: #fff; padding: 10px 20px; border-radius: 10px; font-size: 13px; z-index: 9999; transition: transform 0.3s ease; pointer-events: none; }
   .toast.show { transform: translateX(-50%) translateY(0); }
-  
   #loadingScreen { position: fixed; inset: 0; background: var(--bg); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; }
   .spinner { width: 40px; height: 40px; border: 4px solid #e2e8f0; border-top: 4px solid var(--primary); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 16px; }
   @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -190,7 +182,7 @@
   <div style="color: var(--text-muted); font-size: 14px;">Loading...</div>
 </div>
 
-<!-- Welcome Modal -->
+<!-- Modals -->
 <div class="modal-overlay" id="welcomeModal">
   <div class="modal-card">
     <div style="font-size: 60px; margin-bottom: 16px;">🎉</div>
@@ -200,23 +192,15 @@
   </div>
 </div>
 
-<!-- About Modal -->
 <div class="modal-overlay" id="aboutModal">
   <div class="modal-card">
     <div style="font-size: 60px; margin-bottom: 16px;">🛡️</div>
     <h2 style="font-size: 20px; font-weight: 800; color: var(--text); margin-bottom: 8px;">About EarnX</h2>
-    <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;" data-i18n="about_text">💰 EarnX – অনলাইনে আয় করার নতুন সুযোগ!
-
-📱 বিজ্ঞাপন দেখুন, বিভিন্ন টাস্ক সম্পন্ন করুন এবং বন্ধুদের রেফার করে পয়েন্ট বা পুরস্কার অর্জন করুন।
-
-💸 অর্জিত আয় বিকাশ, নগদ, রকেটসহ বিভিন্ন পেমেন্ট মাধ্যমে উত্তোলনের সুযোগ রয়েছে।
-
-🚀 EarnX-এর সঙ্গে যুক্ত হোন, কাজ করুন এবং নিজের উপার্জনের সুযোগ তৈরি করুন।</p>
+    <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;" data-i18n="about_text">আমাদের সততা, বিশ্বস্ত পরিচয়।</p>
     <button class="btn-watch" style="width: 100%; justify-content: center; background: #f1f5f9; color: #64748b;" onclick="document.getElementById('aboutModal').classList.remove('show')" data-i18n="btn_close">বন্ধ করুন</button>
   </div>
 </div>
 
-<!-- Language Modal -->
 <div class="modal-overlay" id="langModal">
   <div class="modal-card">
     <h3 style="font-size:18px; margin-bottom:15px;" data-i18n="select_lang">ভাষা নির্বাচন করুন</h3>
@@ -228,7 +212,6 @@
   </div>
 </div>
 
-<!-- Link Verification Modal -->
 <div class="modal-overlay" id="verifyModal">
   <div class="modal-card">
     <h3 style="font-size:18px; margin-bottom:5px;" data-i18n="verify_link">লিংক ভিজিট করুন</h3>
@@ -238,7 +221,6 @@
   </div>
 </div>
 
-<!-- Notifications Modal -->
 <div class="modal-overlay" id="notificationModal">
   <div class="modal-card" style="max-height: 80vh; overflow-y: auto; text-align: left;">
     <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 10px;" data-i18n="notifications">🔔 নোটিফিকেশন</h3>
@@ -382,7 +364,6 @@
     </div>
 
     <div id="tasksContainer">
-      <!-- Default Video Ad (Monetag) -->
       <div class="task-card">
         <div class="task-icon" style="background:#ecfdf5;color:#10b981;">▶️</div>
         <div class="task-info">
@@ -396,7 +377,6 @@
         <button class="btn-watch" id="watchAdBtn" onclick="watchAd('monetag', 20)">▶️ <span data-i18n="btn_watch">দেখুন</span></button>
       </div>
 
-      <!-- Daily Bonus -->
       <div class="task-card">
         <div class="task-icon" style="background:#ecfdf5;color:#10b981;">📅</div>
         <div class="task-info">
@@ -506,22 +486,32 @@
       <div class="wallet-graphic" style="opacity:0.3;"></div>
     </div>
     <div class="sec-title" style="margin-bottom:12px;" data-i18n="withdraw_title">উত্তোলন পদ্ধতি</div>
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px;">
-      <div class="method-card selected" onclick="selectMethod('bkash', this)" style="border:2px solid var(--primary); background:var(--primary-light); border-radius:12px; padding:16px; text-align:center; cursor:pointer;">
+    
+    <!-- Withdraw Methods -->
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:16px;">
+      <div class="method-card selected" onclick="selectMethod('bkash', this)" style="border:2px solid var(--primary); background:var(--primary-light); border-radius:12px; padding:16px 4px; text-align:center; cursor:pointer;">
         <div style="font-size:30px;">🔴</div>
-        <div style="font-size:14px; font-weight:700; margin-top:4px;">bKash</div>
+        <div style="font-size:13px; font-weight:700; margin-top:4px;">bKash</div>
       </div>
-      <div class="method-card" onclick="selectMethod('nagad', this)" style="border:2px solid var(--border); background:var(--card); border-radius:12px; padding:16px; text-align:center; cursor:pointer;">
+      <div class="method-card" onclick="selectMethod('nagad', this)" style="border:2px solid var(--border); background:var(--card); border-radius:12px; padding:16px 4px; text-align:center; cursor:pointer;">
         <div style="font-size:30px;">🟠</div>
-        <div style="font-size:14px; font-weight:700; margin-top:4px;">Nagad</div>
+        <div style="font-size:13px; font-weight:700; margin-top:4px;">Nagad</div>
+      </div>
+      <div class="method-card" onclick="selectMethod('crypto', this)" style="border:2px solid var(--border); background:var(--card); border-radius:12px; padding:16px 4px; text-align:center; cursor:pointer;">
+        <div style="font-size:30px;">🪙</div>
+        <div style="font-size:13px; font-weight:700; margin-top:4px;">USDT</div>
       </div>
     </div>
+
     <div style="background:#f0fdf4; border:1px solid #bbf7d0; padding:12px; border-radius:12px; font-size:12px; color:#166534; margin-bottom:16px; font-weight:600;">
       👥 <span data-i18n="withdraw_min_ref">সর্বনিম্ন রেফারেল প্রয়োজন</span>: <span id="minReferralDisplay">20</span> | <span data-i18n="withdraw_yours">আপনার</span>: <span id="withdrawRefCount">0</span>
     </div>
-    <input class="input-field" id="wAccount" type="tel" placeholder="অ্যাকাউন্ট নম্বর (01XXXXXXXXX)" data-i18n-placeholder="withdraw_account">
-    <input class="input-field" id="wAmount" type="number" placeholder="পরিমাণ (সর্বনিম্ন ৳1000)" data-i18n-placeholder="withdraw_amount">
-    <button id="withdrawBtn" onclick="submitWithdraw()" style="width:100%; padding:14px; border:none; border-radius:12px; background:#cbd5e1; color:#fff; font-weight:700; font-size:15px; margin-top:8px;" data-i18n="withdraw_btn">উত্তোলন করুন</button>
+    
+    <!-- Account Input -->
+    <input class="input-field" id="wAccount" type="tel" placeholder="Account Number (01XXXXXXXXX)" data-i18n-placeholder="withdraw_account">
+    <input class="input-field" id="wAmount" type="number" placeholder="Amount (Min ৳1000)" data-i18n-placeholder="withdraw_amount">
+    
+    <button id="withdrawBtn" onclick="submitWithdraw()" style="width:100%; padding:14px; border:none; border-radius:12px; background:#cbd5e1; color:#fff; font-weight:700; font-size:15px; margin-top:8px;" data-i18n="withdraw_btn">Withdraw</button>
   </div>
 
   <!-- ================= LEADERBOARD PAGE ================= -->
@@ -529,31 +519,31 @@
     <div style="background: linear-gradient(to bottom right, #064e3b, #10b981); border-radius: 20px; padding: 24px 20px; color: #fff; position: relative; overflow: hidden; margin-bottom: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
       <div style="position: relative; z-index: 1;">
         <div style="font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 6px; opacity: 0.9;" data-i18n="board_top">
-          🏆 শীর্ষ উপার্জনকারী
+          🏆 Top Earners
         </div>
-        <h2 style="font-size: 28px; font-weight: 800; margin: 8px 0;" data-i18n="board_title">লিডারবোর্ড</h2>
-        <p style="font-size: 12px; opacity: 0.9; margin-bottom: 20px;" data-i18n="board_desc">আরও বন্ধু রেফার করুন এবং রেফারেল লিডারবোর্ডে উপরে উঠুন!</p>
+        <h2 style="font-size: 28px; font-weight: 800; margin: 8px 0;" data-i18n="board_title">Leaderboard</h2>
+        <p style="font-size: 12px; opacity: 0.9; margin-bottom: 20px;" data-i18n="board_desc">Refer more friends and climb up!</p>
         <div style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2); border-radius: 16px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(5px);">
           <div style="display: flex; align-items: center; gap: 12px;">
             <div style="width: 44px; height: 44px; border-radius: 12px; background: #a855f7; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 800; color: #fff;" id="topLbAvatar">SM</div>
             <div>
               <div style="font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 4px;">
-                👋 <span id="topLbName">sadik mrs</span> · <span data-i18n="board_you">আপনি</span>
+                👋 <span id="topLbName">sadik mrs</span> · <span data-i18n="board_you">You</span>
               </div>
-              <div style="font-size: 11px; opacity: 0.8; margin-top: 2px;" data-i18n="board_raise">বোর্ডে উঠতে বন্ধু রেফার করুন</div>
+              <div style="font-size: 11px; opacity: 0.8; margin-top: 2px;" data-i18n="board_raise">Refer friends to raise</div>
             </div>
           </div>
           <div style="text-align: right;">
             <div style="font-size: 20px; font-weight: 800;" id="topLbRefs">0</div>
-            <div style="font-size: 10px; opacity: 0.8;" data-i18n="board_total_ref">মোট রেফারেল</div>
+            <div style="font-size: 10px; opacity: 0.8;" data-i18n="board_total_ref">Total Referrals</div>
           </div>
         </div>
       </div>
     </div>
     <div class="podium-container" id="podiumContainer"></div>
     <div style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0 16px;">
-      <div style="font-size: 16px; font-weight: 800; display: flex; align-items: center; gap: 6px;" data-i18n="board_ranking">🛡️ র্যাংকিং</div>
-      <div style="font-size: 12px; color: var(--text-muted);"><span data-i18n="board_users">50 জন ব্যবহারকারী</span></div>
+      <div style="font-size: 16px; font-weight: 800; display: flex; align-items: center; gap: 6px;" data-i18n="board_ranking">🛡️ Ranking</div>
+      <div style="font-size: 12px; color: var(--text-muted);"><span data-i18n="board_users">50 Users</span></div>
     </div>
     <div id="leaderboardList"></div>
   </div>
@@ -561,7 +551,7 @@
   <!-- ================= PROFILE PAGE ================= -->
   <div id="page-profile" class="page" style="background: #f8fafc; padding: 0;">
     <div style="position: relative; padding-top: 16px;">
-      <div class="moon-toggle" onclick="showToast('ডার্ক মোড শীঘ্রই আসছে')">🌙</div>
+      <div class="moon-toggle" onclick="showToast('Dark Mode Coming Soon')">🌙</div>
       
       <div class="profile-header-new">
         <div class="avatar-large" id="profileInitial">SM</div>
@@ -571,12 +561,12 @@
             <span class="verified-badge">✔</span>
           </div>
           <div class="username-new" id="profileUsernameDisplay">@Sadikmrs</div>
-          <div class="elite-badge" data-i18n="badge_elite">⭐ এলিট সদস্য</div>
+          <div class="elite-badge" data-i18n="badge_elite">⭐ Elite Member</div>
         </div>
       </div>
 
       <div class="level-card" style="margin: 0 16px 16px;">
-        <div class="level-title-row" data-i18n="profile_level_title">🏆 লেভেল ১ · নবীন</div>
+        <div class="level-title-row" data-i18n="profile_level_title">🏆 Level 1 · Novice</div>
         <div class="progress-bar-bg">
           <div class="progress-bar-fill" id="levelProgressFill" style="width: 0%;"></div>
         </div>
@@ -585,9 +575,9 @@
 
       <div style="padding: 0 16px;">
         <div class="wallet-card" style="margin-top: 0;">
-          <div class="wallet-label" data-i18n="home_total_bal">মোট ব্যালেন্স 👁</div>
+          <div class="wallet-label" data-i18n="home_total_bal">Total Balance 👁</div>
           <div class="wallet-balance" id="profileBalance">৳45.00</div>
-          <div class="wallet-sub"><span data-i18n="home_avail_bal">উপলব্ধ ব্যালেন্স</span> <span id="profileBalanceSub">৳45.00</span></div>
+          <div class="wallet-sub"><span data-i18n="home_avail_bal">Available Balance</span> <span id="profileBalanceSub">৳45.00</span></div>
           <div class="wallet-graphic"></div>
         </div>
 
@@ -595,22 +585,22 @@
           <div class="stat-box">
             <div class="stat-icon-wrap" style="background:#ecfdf5;color:#10b981;">👥</div>
             <div class="stat-val" id="profileStatRefs">0</div>
-            <div class="stat-lbl" data-i18n="home_total_refs">মোট রেফারেল</div>
+            <div class="stat-lbl" data-i18n="home_total_refs">Total Referrals</div>
           </div>
           <div class="stat-box">
             <div class="stat-icon-wrap" style="background:#eff6ff;color:#3b82f6;">☑️</div>
             <div class="stat-val">0</div>
-            <div class="stat-lbl" data-i18n="home_tasks_done">সম্পন্ন টাস্ক</div>
+            <div class="stat-lbl" data-i18n="home_tasks_done">Tasks Done</div>
           </div>
           <div class="stat-box">
             <div class="stat-icon-wrap" style="background:#fdf4ff;color:#d946ef;">🎁</div>
             <div class="stat-val">2</div>
-            <div class="stat-lbl" data-i18n="home_bonuses">নেওয়া বোনাস</div>
+            <div class="stat-lbl" data-i18n="home_bonuses">Bonuses</div>
           </div>
           <div class="stat-box">
             <div class="stat-icon-wrap" style="background:#fffbeb;color:#f59e0b;">💰</div>
             <div class="stat-val" id="profileStatEarned">৳45.00</div>
-            <div class="stat-lbl" data-i18n="home_total_earned">মোট আয়</div>
+            <div class="stat-lbl" data-i18n="home_total_earned">Total Earned</div>
           </div>
         </div>
       </div>
@@ -621,7 +611,7 @@
           <div class="menu-item-profile" onclick="openNotifications()">
             <div class="menu-icon-profile" style="background: #f3e8ff; color: #a855f7;">🔔</div>
             <div class="menu-text-profile">
-              <div class="menu-title-profile" data-i18n="profile_notif">নোটিফিকেশন</div>
+              <div class="menu-title-profile" data-i18n="profile_notif">Notifications</div>
               <div class="menu-sub-profile" data-i18n="profile_notif_sub">Check latest updates</div>
             </div>
             <div class="menu-arrow-profile">›</div>
@@ -630,17 +620,17 @@
           <div class="menu-item-profile" onclick="document.getElementById('langModal').classList.add('show')">
             <div class="menu-icon-profile" style="background: #dbeafe; color: #3b82f6;">🌐</div>
             <div class="menu-text-profile">
-              <div class="menu-title-profile" data-i18n="profile_lang">ভাষা</div>
+              <div class="menu-title-profile" data-i18n="profile_lang">Language</div>
               <div class="menu-sub-profile" data-i18n="profile_lang_sub">Choose your preferred language</div>
             </div>
-            <div class="lang-badge-profile" id="currentLangDisplay">বাংলা</div>
+            <div class="lang-badge-profile" id="currentLangDisplay">English</div>
             <div class="menu-arrow-profile">›</div>
           </div>
 
           <div class="menu-item-profile" onclick="goTo('chat')">
             <div class="menu-icon-profile" style="background: #fef3c7; color: #d97706;">🎧</div>
             <div class="menu-text-profile">
-              <div class="menu-title-profile" data-i18n="profile_support">সহায়তা ও সাপোর্ট</div>
+              <div class="menu-title-profile" data-i18n="profile_support">Help & Support</div>
               <div class="menu-sub-profile" data-i18n="profile_support_sub">Live chat with Admin</div>
             </div>
             <div class="menu-arrow-profile">›</div>
@@ -655,7 +645,6 @@
             <div class="menu-arrow-profile">›</div>
           </div>
 
-          <!-- Admin Panel (Hidden by default) -->
           <div class="menu-item-profile" id="adminMenuBtn" style="display: none;" onclick="openAdminPanel()">
             <div class="menu-icon-profile" style="background: #ffedd5; color: #ea580c;">🔐</div>
             <div class="menu-text-profile">
@@ -670,9 +659,9 @@
         <div class="promo-banner-profile">
           <div class="promo-icon-profile">🛡️</div>
           <div class="promo-content-profile">
-            <div class="promo-title-profile" data-i18n="profile_promo">এগিয়ে চলুন, আপনি দারুণ করছেন!</div>
-            <div class="promo-text-profile" data-i18n="profile_promo_sub">আরও টাস্ক সম্পন্ন করে বেশি পুরস্কার আয় করুন।</div>
-            <button class="promo-btn-profile" onclick="goTo('earn')" data-i18n="profile_show_tasks">টাস্ক দেখুন ›</button>
+            <div class="promo-title-profile" data-i18n="profile_promo">Keep Going, You're Doing Great!</div>
+            <div class="promo-text-profile" data-i18n="profile_promo_sub">Complete more tasks and earn more rewards.</div>
+            <button class="promo-btn-profile" onclick="goTo('earn')" data-i18n="profile_show_tasks">View Tasks ›</button>
           </div>
         </div>
       </div>
@@ -686,14 +675,14 @@
         <div style="font-size: 24px;">🎧</div>
         <div>
           <div style="font-weight: 800; font-size: 16px;" data-i18n="chat_support">Live Support</div>
-          <div style="font-size: 12px; color: var(--primary);" data-i18n="chat_online">● অনলাইন</div>
+          <div style="font-size: 12px; color: var(--primary);" data-i18n="chat_online">● Online</div>
         </div>
       </div>
       <div class="chat-messages" id="userChatBox">
-        <div style="text-align: center; color: var(--text-muted); font-size: 12px; margin-top: 20px;" data-i18n="chat_start">আপনি এখানে সরাসরি এডমিনের সাথে কথা বলতে পারেন।</div>
+        <div style="text-align: center; color: var(--text-muted); font-size: 12px; margin-top: 20px;" data-i18n="chat_start">You can chat directly with the admin here.</div>
       </div>
       <div class="chat-input-area">
-        <input type="text" id="userChatInput" placeholder="মেসেজ লিখুন..." data-i18n-placeholder="chat_type">
+        <input type="text" id="userChatInput" placeholder="Type a message..." data-i18n-placeholder="chat_type">
         <button onclick="sendUserChat()">➤</button>
       </div>
     </div>
@@ -701,12 +690,12 @@
 
   <!-- BOTTOM NAVIGATION -->
   <nav class="bottom-nav">
-    <button class="nav-item active" data-page="home" onclick="goTo('home')"><span class="nav-icon">🏠</span><span data-i18n="nav_home">হোম</span></button>
-    <button class="nav-item" data-page="earn" onclick="goTo('earn')"><span class="nav-icon">💰</span><span data-i18n="nav_earn">আয়</span></button>
-    <button class="nav-item" data-page="refer" onclick="goTo('refer')"><span class="nav-icon">👥</span><span data-i18n="nav_refer">রেফার</span><span class="nav-badge">1</span></button>
-    <button class="nav-item" data-page="withdraw" onclick="goTo('withdraw')"><span class="nav-icon">💳</span><span data-i18n="nav_withdraw">উত্তোলন</span></button>
-    <button class="nav-item" data-page="leaderboard" onclick="goTo('leaderboard')"><span class="nav-icon">🏆</span><span data-i18n="nav_board">লিডারবোর্ড</span></button>
-    <button class="nav-item" data-page="profile" onclick="goTo('profile')"><span class="nav-icon">👤</span><span data-i18n="nav_profile">প্রোফাইল</span><span class="nav-badge" style="background:#f59e0b;">9+</span></button>
+    <button class="nav-item active" data-page="home" onclick="goTo('home')"><span class="nav-icon">🏠</span><span data-i18n="nav_home">Home</span></button>
+    <button class="nav-item" data-page="earn" onclick="goTo('earn')"><span class="nav-icon">💰</span><span data-i18n="nav_earn">Earn</span></button>
+    <button class="nav-item" data-page="refer" onclick="goTo('refer')"><span class="nav-icon">👥</span><span data-i18n="nav_refer">Refer</span><span class="nav-badge">1</span></button>
+    <button class="nav-item" data-page="withdraw" onclick="goTo('withdraw')"><span class="nav-icon">💳</span><span data-i18n="nav_withdraw">Withdraw</span></button>
+    <button class="nav-item" data-page="leaderboard" onclick="goTo('leaderboard')"><span class="nav-icon">🏆</span><span data-i18n="nav_board">Board</span></button>
+    <button class="nav-item" data-page="profile" onclick="goTo('profile')"><span class="nav-icon">👤</span><span data-i18n="nav_profile">Profile</span><span class="nav-badge" style="background:#f59e0b;">9+</span></button>
   </nav>
 </div>
 
@@ -820,32 +809,6 @@
   // TRANSLATIONS (i18n)
   // ==========================================
   const translations = {
-    bn: {
-      nav_home: "হোম", nav_earn: "আয়", nav_refer: "রেফার", nav_withdraw: "উত্তোলন", nav_board: "লিডারবোর্ড", nav_profile: "প্রোফাইল",
-      home_hello: "হ্যালো", home_welcome: "আবার স্বাগতম EarnX", home_total_bal: "মোট ব্যালেন্স 👁", home_avail_bal: "উপলব্ধ ব্যালেন্স",
-      home_withdraw: "উত্তোলন", home_total_refs: "মোট রেফারেল", home_tasks_done: "সম্পন্ন টাস্ক", home_bonuses: "নেওয়া বোনাস", home_total_earned: "মোট আয়",
-      home_earn_summary: "আয়ের সারসংক্ষেপ", home_see_all: "সব দেখুন ›", home_ad_rev: "বিজ্ঞাপন আয়", home_ref_rev: "রেফারেল আয়", home_task_rev: "টাস্ক আয়",
-      home_quick: "দ্রুত ব্যবহার", home_refer: "রেফার", home_bonus: "বোনাস", home_tasks: "টাস্ক",
-      earn_title: "| আয়ের উপায়", earn_all: "সব", earn_video: "ভিডিও বিজ্ঞাপন", earn_youtube: "YouTube Task", earn_telegram: "Telegram Task",
-      earn_daily: "দৈনিক", earn_video_desc: "বিজ্ঞাপন দেখে শেষে আয় করুন", earn_per_ad: "প্রতি বিজ্ঞাপন", earn_today_ads: "আজ দেখা বিজ্ঞাপন", earn_remain_ads: "বাকি বিজ্ঞাপন", earn_remain_tasks: "বাকি টাস্ক",
-      earn_daily_bonus: "দৈনিক বোনাস", earn_avail: "Available now",
-      refer_invite: "বন্ধুকে আমন্ত্রণ করুন ও", refer_earn: "আয়", refer_per_friend: "per friend", refer_gift: "আপনার বন্ধু পাবে ৳5.00 বোনাস",
-      refer_link: "আপনার রেফারেল লিংক", refer_copy: "লিংক কপি", refer_or: "অথবা", refer_total: "মোট রেফারেল", refer_active: "সক্রিয় রেফারেল", refer_total_earn: "মোট আয়", refer_more: "আরও",
-      withdraw_title: "উত্তোলন পদ্ধতি", withdraw_min_ref: "সর্বনিম্ন রেফারেল প্রয়োজন", withdraw_yours: "আপনার", withdraw_account: "অ্যাকাউন্ট নম্বর (01XXXXXXXXX)", withdraw_amount: "পরিমাণ (সর্বনিম্ন ৳1000)", withdraw_btn: "উত্তোলন করুন",
-      board_top: "শীর্ষ উপার্জনকারী", board_title: "লিডারবোর্ড", board_desc: "আরও বন্ধু রেফার করুন এবং রেফারেল লিডারবোর্ডে উপরে উঠুন!",
-      board_you: "আপনি", board_raise: "বোর্ডে উঠতে বন্ধু রেফার করুন", board_total_ref: "মোট রেফারেল", board_ranking: "🛡️ র্যাংকিং", board_users: "50 জন ব্যবহারকারী",
-      profile_level_title: "🏆 লেভেল ১ · নবীন", profile_refs_txt: "referrals · Next level at 10",
-      profile_notif: "নোটিফিকেশন", profile_notif_sub: "Check latest updates", profile_lang: "ভাষা", profile_lang_sub: "Choose your preferred language",
-      profile_support: "সহায়তা ও সাপোর্ট", profile_support_sub: "Live chat with Admin", profile_about: "About EarnX", profile_about_sub: "Learn more about us",
-      profile_promo: "এগিয়ে চলুন, আপনি দারুণ করছেন!", profile_promo_sub: "আরও টাস্ক সম্পন্ন করে বেশি পুরস্কার আয় করুন।", profile_show_tasks: "টাস্ক দেখুন ›",
-      profile_admin: "Admin Panel", profile_admin_sub: "Restricted Area",
-      btn_watch: "দেখুন", btn_claim: "Claim", btn_claim_reward: "Claim Reward", btn_start: "শুরু করুন", btn_close: "বন্ধ করুন", verify_link: "লিংক ভিজিট করুন", verify_desc: "কাজটি সম্পন্ন করে এই পেজে ফিরে আসুন।",
-      chat_support: "Live Support", chat_online: "● অনলাইন", chat_start: "আপনি এখানে সরাসরি এডমিনের সাথে কথা বলতে পারেন।", chat_type: "মেসেজ লিখুন...",
-      welcome_title: "EarnX এ স্বাগতম!", welcome_desc: "ভিডিও দেখে এবং টাস্ক সম্পন্ন করে প্রতিদিন আয় করুন। আপনার যাত্রা শুভ হোক!",
-      about_text: "আমাদের সততা, বিশ্বস্ত পরিচয়।",
-      badge_elite: "⭐ এলিট সদস্য", badge_level: "🏆 লেভেল ১",
-      select_lang: "ভাষা নির্বাচন করুন", notifications: "🔔 নোটিফিকেশন", no_notif: "কোনো নোটিফিকেশন নেই"
-    },
     en: {
       nav_home: "Home", nav_earn: "Earn", nav_refer: "Refer", nav_withdraw: "Withdraw", nav_board: "Leaderboard", nav_profile: "Profile",
       home_hello: "Hello", home_welcome: "Welcome back to EarnX", home_total_bal: "Total Balance 👁", home_avail_bal: "Available Balance",
@@ -871,6 +834,32 @@
       about_text: "Our honesty is a trusted identity.",
       badge_elite: "⭐ Elite Member", badge_level: "🏆 Level 1",
       select_lang: "Select Language", notifications: "🔔 Notifications", no_notif: "No notifications yet"
+    },
+    bn: {
+      nav_home: "হোম", nav_earn: "আয়", nav_refer: "রেফার", nav_withdraw: "উত্তোলন", nav_board: "লিডারবোর্ড", nav_profile: "প্রোফাইল",
+      home_hello: "হ্যালো", home_welcome: "আবার স্বাগতম EarnX", home_total_bal: "মোট ব্যালেন্স 👁", home_avail_bal: "উপলব্ধ ব্যালেন্স",
+      home_withdraw: "উত্তোলন", home_total_refs: "মোট রেফারেল", home_tasks_done: "সম্পন্ন টাস্ক", home_bonuses: "নেওয়া বোনাস", home_total_earned: "মোট আয়",
+      home_earn_summary: "আয়ের সারসংক্ষেপ", home_see_all: "সব দেখুন ›", home_ad_rev: "বিজ্ঞাপন আয়", home_ref_rev: "রেফারেল আয়", home_task_rev: "টাস্ক আয়",
+      home_quick: "দ্রুত ব্যবহার", home_refer: "রেফার", home_bonus: "বোনাস", home_tasks: "টাস্ক",
+      earn_title: "| আয়ের উপায়", earn_all: "সব", earn_video: "ভিডিও বিজ্ঞাপন", earn_youtube: "YouTube Task", earn_telegram: "Telegram Task",
+      earn_daily: "দৈনিক", earn_video_desc: "বিজ্ঞাপন দেখে শেষে আয় করুন", earn_per_ad: "প্রতি বিজ্ঞাপন", earn_today_ads: "আজ দেখা বিজ্ঞাপন", earn_remain_ads: "বাকি বিজ্ঞাপন", earn_remain_tasks: "বাকি টাস্ক",
+      earn_daily_bonus: "দৈনিক বোনাস", earn_avail: "Available now",
+      refer_invite: "বন্ধুকে আমন্ত্রণ করুন ও", refer_earn: "আয়", refer_per_friend: "per friend", refer_gift: "আপনার বন্ধু পাবে ৳5.00 বোনাস",
+      refer_link: "আপনার রেফারেল লিংক", refer_copy: "লিংক কপি", refer_or: "অথবা", refer_total: "মোট রেফারেল", refer_active: "সক্রিয় রেফারেল", refer_total_earn: "মোট আয়", refer_more: "আরও",
+      withdraw_title: "উত্তোলন পদ্ধতি", withdraw_min_ref: "সর্বনিম্ন রেফারেল প্রয়োজন", withdraw_yours: "আপনার", withdraw_account: "অ্যাকাউন্ট নম্বর (01XXXXXXXXX)", withdraw_amount: "পরিমাণ (সর্বনিম্ন ৳1000)", withdraw_btn: "উত্তোলন করুন",
+      board_top: "শীর্ষ উপার্জনকারী", board_title: "লিডারবোর্ড", board_desc: "আরও বন্ধু রেফার করুন এবং রেফারেল লিডারবোর্ডে উপরে উঠুন!",
+      board_you: "আপনি", board_raise: "বোর্ডে উঠতে বন্ধু রেফার করুন", board_total_ref: "মোট রেফারেল", board_ranking: "🛡️ র্যাংকিং", board_users: "50 জন ব্যবহারকারী",
+      profile_level_title: "🏆 লেভেল ১ · নবীন", profile_refs_txt: "referrals · Next level at 10",
+      profile_notif: "নোটিফিকেশন", profile_notif_sub: "Check latest updates", profile_lang: "ভাষা", profile_lang_sub: "Choose your preferred language",
+      profile_support: "সহায়তা ও সাপোর্ট", profile_support_sub: "Live chat with Admin", profile_about: "About EarnX", profile_about_sub: "Learn more about us",
+      profile_promo: "এগিয়ে চলুন, আপনি দারুণ করছেন!", profile_promo_sub: "আরও টাস্ক সম্পন্ন করে বেশি পুরস্কার আয় করুন।", profile_show_tasks: "টাস্ক দেখুন ›",
+      profile_admin: "Admin Panel", profile_admin_sub: "Restricted Area",
+      btn_watch: "দেখুন", btn_claim: "Claim", btn_claim_reward: "Claim Reward", btn_start: "শুরু করুন", btn_close: "বন্ধ করুন", verify_link: "লিংক ভিজিট করুন", verify_desc: "কাজটি সম্পন্ন করে এই পেজে ফিরে আসুন।",
+      chat_support: "Live Support", chat_online: "● অনলাইন", chat_start: "আপনি এখানে সরাসরি এডমিনের সাথে কথা বলতে পারেন।", chat_type: "মেসেজ লিখুন...",
+      welcome_title: "EarnX এ স্বাগতম!", welcome_desc: "ভিডিও দেখে এবং টাস্ক সম্পন্ন করে প্রতিদিন আয় করুন। আপনার যাত্রা শুভ হোক!",
+      about_text: "আমাদের সততা, বিশ্বস্ত পরিচয়।",
+      badge_elite: "⭐ এলিট সদস্য", badge_level: "🏆 লেভেল ১",
+      select_lang: "ভাষা নির্বাচন করুন", notifications: "🔔 নোটিফিকেশন", no_notif: "কোনো নোটিফিকেশন নেই"
     },
     zh: {
       nav_home: "主页", nav_earn: "赚钱", nav_refer: "推荐", nav_withdraw: "提现", nav_board: "排行榜", nav_profile: "我的",
@@ -926,19 +915,17 @@
     }
   };
 
-  let currentLang = localStorage.getItem('appLang') || 'bn';
+  // Always start with English
+  let currentLang = 'en';
 
   function setLanguage(lang) {
     currentLang = lang;
-    localStorage.setItem('appLang', lang);
     document.getElementById('langModal').classList.remove('show');
     
-    // Update language display
     const langNames = { bn: 'বাংলা', en: 'English', zh: '中文', ja: '日本語' };
     const currentLangDisplay = document.getElementById('currentLangDisplay');
     if(currentLangDisplay) currentLangDisplay.innerText = langNames[lang];
     
-    // Update all texts
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       if(translations[lang] && translations[lang][key]) {
@@ -946,13 +933,19 @@
       }
     });
     
-    // Update placeholders
-    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-      const key = el.getAttribute('data-i18n-placeholder');
-      if(translations[lang] && translations[lang][key]) {
-        el.placeholder = translations[lang][key];
-      }
-    });
+    // Change placeholders dynamically
+    if (selectedWithdrawMethod === 'USDT') {
+        document.getElementById('wAccount').placeholder = "USDT Wallet Address (BEP20)";
+        let usdtMin = (appSettings.min_withdrawal / 120).toFixed(2);
+        document.getElementById('wAmount').placeholder = `Amount (Min ~${usdtMin} USDT)`;
+    } else {
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+          const key = el.getAttribute('data-i18n-placeholder');
+          if(translations[lang] && translations[lang][key]) {
+            el.placeholder = translations[lang][key];
+          }
+        });
+    }
 
     updateWithdrawBtn(); 
     if(currentUser) loadCustomAds();
@@ -975,6 +968,9 @@
   let currentLinkReward = 0;
   let chatInterval;
   let currentAdminChatUserId = null;
+  
+  // Crypto rate: 1 USDT = 120 BDT (You can change this)
+  const USDT_RATE = 120; 
 
   function goTo(pageId) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -1070,7 +1066,25 @@
     });
     el.style.borderColor = 'var(--primary)';
     el.style.background = 'var(--primary-light)';
-    selectedWithdrawMethod = method === 'bkash' ? 'bKash' : 'Nagad';
+    
+    const accInput = document.getElementById('wAccount');
+    const amtInput = document.getElementById('wAmount');
+
+    if(method === 'crypto') {
+        selectedWithdrawMethod = 'USDT';
+        accInput.type = 'text';
+        accInput.placeholder = "USDT Wallet Address (BEP20)";
+        
+        let usdtMin = (appSettings.min_withdrawal / USDT_RATE).toFixed(2);
+        amtInput.placeholder = `Amount (Min ~${usdtMin} USDT)`;
+    } else {
+        selectedWithdrawMethod = method === 'bkash' ? 'bKash' : 'Nagad';
+        accInput.type = 'tel';
+        accInput.placeholder = translations[currentLang].withdraw_account;
+        amtInput.placeholder = `${translations[currentLang].withdraw_amount.split(' (')[0]} (Min ৳${appSettings.min_withdrawal})`;
+    }
+    
+    updateWithdrawBtn();
   }
 
   async function loadSettings() {
@@ -1079,7 +1093,7 @@
           appSettings = data;
           document.getElementById('minReferralDisplay').innerText = appSettings.min_referral;
           document.getElementById('dailyBonusRewardDisplay').innerText = `🪙 ৳${appSettings.daily_bonus}`;
-          document.getElementById('wAmount').placeholder = `${translations[currentLang].withdraw_amount.split(' (')[0]} (${appSettings.min_withdrawal})`;
+          document.getElementById('wAmount').placeholder = `${translations[currentLang].withdraw_amount.split(' (')[0]} (Min ৳${appSettings.min_withdrawal})`;
       }
   }
 
@@ -1147,7 +1161,9 @@
       if(notifs && notifs.length > 0) document.getElementById('notifBadge').style.display = 'flex';
 
       checkWelcome();
-      setLanguage(currentLang); // Apply default language
+      
+      // Force English on load
+      setLanguage('en'); 
       
     } catch (err) {
       console.error("Init Error: ", err);
@@ -1410,13 +1426,22 @@
 
     const container = document.getElementById('leaderboardList');
     let listHTML = '';
+    
     const dummyNames = [
-      "Md Arafat", "Juwel Ahmed", "DH TEXAS POKER CHIPS", "Akash Ahmed", "Sagor Hossain", 
-      "Roni Mia", "Rahim Uddin", "Karim Sheikh", "Sumon Ali", "Tamim Iqbal"
+        "Md Arafat", "Juwel Ahmed", "DH TEXAS POKER CHIPS", "Akash Ahmed", "Sagor Hossain", 
+        "Roni Mia", "Rahim Uddin", "Karim Sheikh", "Sumon Ali", "Tamim Iqbal", 
+        "Shakib Khan", "Mushfiqur R.", "Mahmudullah", "Sabbir Rahman", "Mehedi Hasan", 
+        "Liton Das", "Taskin Ahmed", "Mustafizur", "Rubel Hossain", "Imrul Kayes", 
+        "Soumya Sarkar", "Nurul Hasan", "Afif Hossain", "Mosaddek Hossain", "Shoriful Islam", 
+        "Nasum Ahmed", "Mahedi Hasan", "Parvez Hossain", "Shamim Hossain", "Yasir Ali", 
+        "Towhid Hridoy", "Rishad Hossain", "Tanzim Hasan", "Nahid Rana", "Jaker Ali", 
+        "Anamul Haque", "Zakir Hasan", "Taijul Islam", "Khaled Ahmed", "Ebadot Hossain", 
+        "Hasan Mahmud", "Mominul Haque", "Shadman Islam", "Imran Khan", "Al Amin Hossain", 
+        "Abu Jayed", "Kamrul Islam", "Shafiul Islam", "Syed Khaled", "Aminul Islam"
     ];
 
     for(let i=1; i<=50; i++) {
-        let name = dummyNames[i-1] || `User ${i}`;
+        let name = dummyNames[i-1]; 
         let refs = 0;
         
         if(i===1) refs = 555;
@@ -1456,6 +1481,13 @@
     const btn = document.getElementById('withdrawBtn');
     if(!currentUser) return;
     
+    let btnText = `${translations[currentLang].withdraw_btn} ৳${amt}`;
+    
+    if (selectedWithdrawMethod === 'USDT') {
+        let usdtAmount = (amt / USDT_RATE).toFixed(2);
+        btnText = `${translations[currentLang].withdraw_btn} ৳${amt} (~${usdtAmount} USDT)`;
+    }
+
     if(currentUser.referral_count < appSettings.min_referral) {
       btn.style.background = '#cbd5e1'; btn.innerText = `${translations[currentLang].withdraw_min_ref} ${appSettings.min_referral - currentUser.referral_count}`;
     } else if(amt < appSettings.min_withdrawal) {
@@ -1465,7 +1497,7 @@
     } else if(amt > currentUser.balance) {
       btn.style.background = '#cbd5e1'; btn.innerText = 'Insufficient balance';
     } else {
-      btn.style.background = 'var(--primary)'; btn.innerText = `${translations[currentLang].withdraw_btn} ৳${amt}`;
+      btn.style.background = 'var(--primary)'; btn.innerText = btnText;
     }
   }
 
